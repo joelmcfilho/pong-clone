@@ -1,0 +1,53 @@
+[gd_scene format=3 uid="uid://h2uq3w1q1ov5"]
+
+[ext_resource type="Script" uid="uid://dcyjvb24ymd02" path="res://src/GUI/Hud.cs" id="1_37p78"]
+
+[node name="HUD" type="CanvasLayer" unique_id=1865412601]
+script = ExtResource("1_37p78")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1649451325]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_top = 20
+
+[node name="CenterContainer" type="CenterContainer" parent="MarginContainer" unique_id=1154849249]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/CenterContainer" unique_id=443967839]
+layout_mode = 2
+
+[node name="Players" type="HBoxContainer" parent="MarginContainer/CenterContainer/VBoxContainer" unique_id=303018553]
+layout_mode = 2
+theme_override_constants/separation = 60
+
+[node name="Player1" type="Label" parent="MarginContainer/CenterContainer/VBoxContainer/Players" unique_id=189000376]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+horizontal_alignment = 1
+
+[node name="Player2" type="Label" parent="MarginContainer/CenterContainer/VBoxContainer/Players" unique_id=821918485]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+horizontal_alignment = 1
+
+[node name="Score" type="HBoxContainer" parent="MarginContainer/CenterContainer/VBoxContainer" unique_id=1316248319]
+layout_mode = 2
+theme_override_constants/separation = 40
+
+[node name="PlayerScore" type="Label" parent="MarginContainer/CenterContainer/VBoxContainer/Score" unique_id=377001446]
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+horizontal_alignment = 1
+
+[node name="Separator" type="Label" parent="MarginContainer/CenterContainer/VBoxContainer/Score" unique_id=1758906257]
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+horizontal_alignment = 1
+
+[node name="AIScore" type="Label" parent="MarginContainer/CenterContainer/VBoxContainer/Score" unique_id=1310251548]
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+horizontal_alignment = 1

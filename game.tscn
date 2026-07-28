@@ -1,0 +1,119 @@
+[gd_scene format=3 uid="uid://cvt0nocxf1roy"]
+
+[ext_resource type="Texture2D" uid="uid://c6sghkwuada3a" path="res://icon.svg" id="1_80nbo"]
+[ext_resource type="Script" uid="uid://dsllkcspc84di" path="res://src/Actions/PlayerMovement.cs" id="1_e2o6t"]
+[ext_resource type="Script" uid="uid://gxy3wdojy0pe" path="res://src/AI/BallBehavior.cs" id="3_fc0e3"]
+[ext_resource type="Script" uid="uid://c15uiusx4u0be" path="res://src/AI/AIBehavior.cs" id="4_fc0e3"]
+[ext_resource type="Script" uid="uid://duxafh70twlyx" path="res://src/Controllers/GameManager.cs" id="5_7jktm"]
+[ext_resource type="Script" uid="uid://c27fottn3pwu7" path="res://src/Actors/GoalArea.cs" id="6_ryrav"]
+[ext_resource type="PackedScene" uid="uid://h2uq3w1q1ov5" path="res://hud.tscn" id="7_eow3j"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e2o6t"]
+size = Vector2(128.93982, 704.87103)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_fc0e3"]
+radius = 26.504717
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fc0e3"]
+size = Vector2(1473.9618, 38)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7jktm"]
+size = Vector2(16.679264, 117.86794)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ryrav"]
+size = Vector2(3.4684143, 22.023848)
+
+[node name="Game" type="Node2D" unique_id=509795348]
+scale = Vector2(0.785, 0.785)
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=780674992]
+position = Vector2(608, 250.265)
+scale = Vector2(7.235, 7.235)
+
+[node name="PlayerBar" type="CharacterBody2D" parent="." unique_id=2066055655]
+position = Vector2(-35, 34)
+motion_mode = 1
+script = ExtResource("1_e2o6t")
+
+[node name="Sprite2D" type="Sprite2D" parent="PlayerBar" unique_id=1752168664]
+position = Vector2(56, 267)
+scale = Vector2(0.349, 1.897)
+texture = ExtResource("1_80nbo")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerBar" unique_id=770517811]
+position = Vector2(56, 267)
+scale = Vector2(0.349, 0.349)
+shape = SubResource("RectangleShape2D_e2o6t")
+
+[node name="Ball" type="CharacterBody2D" parent="." unique_id=805588895]
+position = Vector2(-1, -1)
+script = ExtResource("3_fc0e3")
+
+[node name="Sprite2D" type="Sprite2D" parent="Ball" unique_id=2005434731]
+position = Vector2(574, 322.99997)
+scale = Vector2(0.415, 0.415)
+texture = ExtResource("1_80nbo")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ball" unique_id=1056134981]
+position = Vector2(574, 323)
+shape = SubResource("CircleShape2D_fc0e3")
+
+[node name="AIBar" type="CharacterBody2D" parent="." unique_id=1211343537]
+position = Vector2(1140, 32)
+motion_mode = 1
+script = ExtResource("4_fc0e3")
+
+[node name="Sprite2D" type="Sprite2D" parent="AIBar" unique_id=122380777]
+position = Vector2(51.999996, 267)
+scale = Vector2(0.349, 1.897)
+texture = ExtResource("1_80nbo")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AIBar" unique_id=2056929856]
+position = Vector2(52.5, 267)
+scale = Vector2(0.349, 0.349)
+shape = SubResource("RectangleShape2D_e2o6t")
+
+[node name="BottomWall" type="StaticBody2D" parent="." unique_id=772910472]
+position = Vector2(18, 655)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BottomWall" unique_id=1342427941]
+position = Vector2(586.45856, 7)
+scale = Vector2(0.9999999, 0.9999999)
+shape = SubResource("RectangleShape2D_fc0e3")
+
+[node name="TopWall" type="StaticBody2D" parent="." unique_id=465555052]
+position = Vector2(25, -29)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TopWall" unique_id=196566834]
+position = Vector2(585.8662, 7.000002)
+scale = Vector2(0.99999994, 0.99999994)
+shape = SubResource("RectangleShape2D_fc0e3")
+
+[node name="PlayerGoal" type="Area2D" parent="." unique_id=1641965965]
+position = Vector2(16, -0.9999995)
+scale = Vector2(5.365, 5.365)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerGoal" unique_id=849640531]
+position = Vector2(-33.612537, 59.832695)
+shape = SubResource("RectangleShape2D_7jktm")
+
+[node name="AIGoal" type="Area2D" parent="." unique_id=1099911479]
+position = Vector2(1187.261, 304.45856)
+scale = Vector2(28.783222, 28.783222)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AIGoal" unique_id=1224795660]
+position = Vector2(6.638692, 0.57535404)
+scale = Vector2(0.99999964, 0.99999964)
+shape = SubResource("RectangleShape2D_ryrav")
+
+[node name="GameManager" type="Node" parent="." unique_id=477410138]
+script = ExtResource("5_7jktm")
+
+[node name="GoalArea" type="Area2D" parent="." unique_id=1170019583]
+position = Vector2(-185, 168)
+script = ExtResource("6_ryrav")
+
+[node name="HUD" parent="." unique_id=1865412601 instance=ExtResource("7_eow3j")]
+
+[connection signal="body_entered" from="PlayerGoal" to="GoalArea" method="PlayerGoalBodyEntered"]
+[connection signal="body_entered" from="AIGoal" to="GoalArea" method="AIGoalBodyEntered"]
