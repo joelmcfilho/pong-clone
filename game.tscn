@@ -2,11 +2,13 @@
 
 [ext_resource type="Texture2D" uid="uid://c6sghkwuada3a" path="res://icon.svg" id="1_80nbo"]
 [ext_resource type="Script" uid="uid://dsllkcspc84di" path="res://src/Actions/PlayerMovement.cs" id="1_e2o6t"]
+[ext_resource type="Script" uid="uid://b0ev2axck8mbs" path="res://src/Controllers/InitGame.cs" id="1_j5wjh"]
 [ext_resource type="Script" uid="uid://gxy3wdojy0pe" path="res://src/AI/BallBehavior.cs" id="3_fc0e3"]
 [ext_resource type="Script" uid="uid://c15uiusx4u0be" path="res://src/AI/AIBehavior.cs" id="4_fc0e3"]
 [ext_resource type="Script" uid="uid://duxafh70twlyx" path="res://src/Controllers/GameManager.cs" id="5_7jktm"]
 [ext_resource type="Script" uid="uid://c27fottn3pwu7" path="res://src/Actors/GoalArea.cs" id="6_ryrav"]
-[ext_resource type="PackedScene" uid="uid://h2uq3w1q1ov5" path="res://hud.tscn" id="7_eow3j"]
+[ext_resource type="PackedScene" uid="uid://nqlxjuuprun6" path="res://hud_alt.tscn" id="7_eow3j"]
+[ext_resource type="PackedScene" uid="uid://f45ifuns2lma" path="res://pause_menu.tscn" id="9_vef74"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e2o6t"]
 size = Vector2(128.93982, 704.87103)
@@ -25,6 +27,7 @@ size = Vector2(3.4684143, 22.023848)
 
 [node name="Game" type="Node2D" unique_id=509795348]
 scale = Vector2(0.785, 0.785)
+script = ExtResource("1_j5wjh")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=780674992]
 position = Vector2(608, 250.265)
@@ -107,13 +110,22 @@ scale = Vector2(0.99999964, 0.99999964)
 shape = SubResource("RectangleShape2D_ryrav")
 
 [node name="GameManager" type="Node" parent="." unique_id=477410138]
+process_mode = 1
 script = ExtResource("5_7jktm")
 
 [node name="GoalArea" type="Area2D" parent="." unique_id=1170019583]
 position = Vector2(-185, 168)
 script = ExtResource("6_ryrav")
 
-[node name="HUD" parent="." unique_id=1865412601 instance=ExtResource("7_eow3j")]
+[node name="Hud" parent="." unique_id=750265900 instance=ExtResource("7_eow3j")]
+process_mode = 1
+
+[node name="PauseMenu" parent="." unique_id=766707054 instance=ExtResource("9_vef74")]
+process_mode = 3
+offset_left = -34.999996
+offset_top = 33.999996
+offset_right = -34.999996
+offset_bottom = 33.999996
 
 [connection signal="body_entered" from="PlayerGoal" to="GoalArea" method="PlayerGoalBodyEntered"]
 [connection signal="body_entered" from="AIGoal" to="GoalArea" method="AIGoalBodyEntered"]

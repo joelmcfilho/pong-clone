@@ -10,14 +10,14 @@ public partial class GoalArea : Area2D
 		gameManager = GetNode<GameManager>("../GameManager");
 	}
 
-	private void PlayerGoalBodyEntered(Node2D ball)
+	private async void PlayerGoalBodyEntered(Node2D ball)
 	{
-		gameManager.GoalScore(Side.AI);
+		await gameManager.GoalScore(Side.AI);
 	}
 
-	private void AIGoalBodyEntered(Node2D ball)
+	private async void AIGoalBodyEntered(Node2D ball)
 	{
-		gameManager.GoalScore(Side.Player);
+		await gameManager.GoalScore(Side.Player);
 	}
 
 

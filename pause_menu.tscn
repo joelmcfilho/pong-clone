@@ -1,0 +1,42 @@
+[gd_scene format=3 uid="uid://f45ifuns2lma"]
+
+[ext_resource type="Script" uid="uid://b5nsn6f6qe8yo" path="res://events/PauseMenu.cs" id="1_hdmo1"]
+
+[node name="PauseMenu" type="Control" unique_id=766707054]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_hdmo1")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=525307065]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.277
+anchor_top = -0.119
+anchor_right = 0.22500001
+anchor_bottom = 0.5
+offset_left = 769.104
+offset_top = 305.112
+offset_right = 312.5899
+offset_bottom = -25.96109
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2.57, 2.57)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=721398394]
+layout_mode = 2
+
+[node name="Resume" type="Button" parent="MarginContainer/VBoxContainer" unique_id=1257201377]
+layout_mode = 2
+text = "Resume"
+
+[node name="Quit" type="Button" parent="MarginContainer/VBoxContainer" unique_id=1473707929]
+layout_mode = 2
+text = "Quit"
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Resume" to="." method="ResumeButton"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Quit" to="." method="QuitButton"]

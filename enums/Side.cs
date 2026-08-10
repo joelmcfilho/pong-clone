@@ -4,5 +4,6 @@ using System;
 public enum Side
 {
 	Player,
-	AI
+	AI,
+	Player2
 }

@@ -1,75 +1,102 @@
 using Godot;
 using System;
+using System.Threading.Tasks;
 
 public partial class GameManager : Node
 {
-	private int _playerScore = 0;
-	private int _aiScore = 0;
+	private int _player1Score = 0;
+	private int _player2Score = 0;
 	private BallBehavior _ball;
 	private PlayerMovement _playerPaddle;
 	private AIBehavior _aiPaddle;
 	private Hud _hud;
+	private Commands _cmds;
+	public bool isCountdownActive {get;set;}
 
 	public override void _Ready()
 	{
 		_ball = GetNode<BallBehavior>("../Ball");
 		_playerPaddle = GetNode<PlayerMovement>("../PlayerBar");
 		_aiPaddle = GetNode<AIBehavior>("../AIBar");
-		_hud = GetNode<Hud>("../HUD");
+		_hud = GetNode<Hud>("../Hud");
 
+		
 	}
+
+	public override async void _Process(double delta)
+    {
+        //DEBUG -- Retirar na versão final
+		if (Input.IsKeyPressed(Key.K))
+		{
+			await EndGame(Side.Player);
+		}
+
+		if (Input.IsKeyPressed(Key.L))
+		{
+			await EndGame(Side.AI);
+		}
+    }
 	
-	public void GoalScore(Side side)
+	public async Task GoalScore(Side side)
 	{
 		if(side == Side.Player)
 		{
-			_playerScore ++;
-			_hud.UpdateScoreHUD(_playerScore,_aiScore);
-			GD.Print("Jogador pontuou!"); //Retirar na UI
-			_ball.ResetBall();
+			_player1Score ++;
+			_hud.UpdateScoreHUD(_player1Score,_player2Score);
 		}
-		if(side == Side.AI)
+		if(side == Side.AI || side == Side.Player2)
 		{
-			_aiScore ++;
-			_hud.UpdateScoreHUD(_playerScore,_aiScore);
-			GD.Print("CPU pontuou!"); //Retirar na UI
-			_ball.ResetBall();
+			_player2Score ++;
+			_hud.UpdateScoreHUD(_player1Score,_player2Score);
+			
 		}
 
-		GD.Print($"SCORE: {_playerScore} x {_aiScore}");
+		//End Game conditions
 
-		if(_playerScore == 3)
+		if(_player1Score == 3)
 		{
-			GD.Print($"SCORE FINAL: {_playerScore} x {_aiScore}");
-			EndGame(Side.Player);
+			await EndGame(Side.Player);
+			_playerPaddle.ResetPaddle(_playerPaddle._initialPosition);
+			_aiPaddle.ResetPaddle(_aiPaddle._initialPosAI);
+			return;
 		}
-		else if(_aiScore == 3)
+		else if(_player2Score == 3)
 		{
-			GD.Print($"SCORE FINAL: {_playerScore} x {_aiScore}");
-			EndGame(Side.AI);
+			if(side == Side.Player2)
+			{
+				await EndGame(Side.Player2);
+				_playerPaddle.ResetPaddle(_playerPaddle._initialPosition);
+				_aiPaddle.ResetPaddle(_aiPaddle._initialPosAI);
+				return;
+			}
+			else if(side == Side.AI)
+			{
+				await EndGame(Side.AI);
+				_playerPaddle.ResetPaddle(_playerPaddle._initialPosition);
+				_aiPaddle.ResetPaddle(_aiPaddle._initialPosAI);
+				return;
+			}
+			
 		}	
 
+		// Continue Game, if endgame conditions are not made, the game will reset and continues
+
+		await _hud.ShowPointSign();
+		_playerPaddle.ResetPaddle(_playerPaddle._initialPosition);
+		_aiPaddle.ResetPaddle(_aiPaddle._initialPosAI);
+		await _ball.ResetBall();
+
 	}
 
-	private void EndGame(Side side)
+	public async Task EndGame(Side side)
 	{
-		String winner;
-		_playerScore = 0;
-		_aiScore = 0;
-		_hud.UpdateScoreHUD(_playerScore,_aiScore);
+		await _hud.ShowWinner(side);
+		
+		_player1Score = 0;
+		_player2Score = 0;
+		_hud.UpdateScoreHUD(_player1Score,_player2Score);		
 
-		if(side == Side.Player)
-		{
-			winner = "Jogador"; //Retirar na UI
-			GD.Print($"Jogo Finalizado. O vencedor é o {winner}!"); //Retirar na UI
-		}
-		else if(side == Side.AI)
-		{
-			winner = "CPU"; //Retirar na UI
-			GD.Print($"Jogo Finalizado. O vencedor é o {winner}!"); //Retirar na UI
-		}
-
-		_ball.ResetBall();
+		await _ball.ResetBall();
 		_playerPaddle.ResetPaddle(_playerPaddle._initialPosition);
 		_aiPaddle.ResetPaddle(_aiPaddle._initialPosAI);
 

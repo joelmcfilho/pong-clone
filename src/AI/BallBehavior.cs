@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using Godot;
 
 public partial class BallBehavior : CharacterBody2D
@@ -7,16 +8,18 @@ public partial class BallBehavior : CharacterBody2D
 	public Vector2 _direction = Vector2.Zero;
 	private Vector2 _spawnPosition;
 
+	private Hud _hud;
+
 	public async override void _Ready()
 	{
-		await ToSignal(GetTree().CreateTimer(3f),SceneTreeTimer.SignalName.Timeout);
+		_hud = GetNode<Hud>("../Hud");
 
 		_spawnPosition = GlobalPosition;
 
-		StartBall();
+
 	}
 
-	private void StartBall()
+	public void StartBall()
 	{
 		RandomNumberGenerator rng = new RandomNumberGenerator();
 
@@ -55,13 +58,13 @@ public partial class BallBehavior : CharacterBody2D
 
 	} 
 
-	public async void ResetBall()
+	public async Task ResetBall()
 	{	
 
 		GlobalPosition = _spawnPosition;
 		_direction = Vector2.Zero;
 
-		await ToSignal(GetTree().CreateTimer(4f),SceneTreeTimer.SignalName.Timeout);
+		await _hud.Countdown();
 
 		StartBall();
 		

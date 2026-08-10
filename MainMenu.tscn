@@ -1,0 +1,93 @@
+[gd_scene format=3 uid="uid://bvl22coi32tdr"]
+
+[ext_resource type="Texture2D" uid="uid://dd00mjpxry0uw" path="res://assets/background.jpg" id="1_eiy7p"]
+[ext_resource type="Script" uid="uid://bqvnfxasfs0q0" path="res://src/GUI/MainMenu.cs" id="1_h7a2f"]
+[ext_resource type="PackedScene" uid="uid://cvt0nocxf1roy" path="res://game.tscn" id="1_i26rj"]
+
+[node name="MainMenu" type="Control" unique_id=700214640]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -265.0
+offset_top = -281.0
+offset_right = -265.0
+offset_bottom = -281.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_h7a2f")
+
+[node name="Background" type="TextureRect" parent="." unique_id=535402687]
+modulate = Color(0.33324522, 0.32279643, 0.30852216, 1)
+use_parent_material = true
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.054
+offset_left = -202.0
+offset_top = -401.0
+offset_right = -176.0
+offset_bottom = -59.992004
+texture = ExtResource("1_eiy7p")
+
+[node name="MainMenu" type="CenterContainer" parent="." unique_id=1901078051]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.58100003
+anchor_bottom = 0.328
+offset_left = 116.0
+offset_top = -150.0
+offset_right = 2.6879883
+offset_bottom = 86.45599
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainMenu" unique_id=1763692839]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="MainMenu/VBoxContainer" unique_id=1423763614]
+layout_mode = 2
+text = "ANOTHER PONG CLONE..."
+
+[node name="PlayButton" type="Button" parent="MainMenu/VBoxContainer" unique_id=1739450423]
+layout_mode = 2
+text = "Play"
+
+[node name="QuitButton" type="Button" parent="MainMenu/VBoxContainer" unique_id=1516237299]
+layout_mode = 2
+text = "Quit"
+
+[node name="ModeMenu" type="CenterContainer" parent="." unique_id=819711579]
+visible = false
+layout_mode = 0
+offset_left = 102.0
+offset_top = -52.0
+offset_right = 694.0
+offset_bottom = 212.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ModeMenu" unique_id=70434052]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ModeMenu/VBoxContainer" unique_id=883556456]
+layout_mode = 2
+text = "Choose your Game Mode!"
+
+[node name="PlayerCPU" type="Button" parent="ModeMenu/VBoxContainer" unique_id=2043286234]
+layout_mode = 2
+text = "Player VS CPU"
+
+[node name="PlayerPlayer" type="Button" parent="ModeMenu/VBoxContainer" unique_id=1727087594]
+layout_mode = 2
+text = "Player VS Player"
+
+[node name="Return" type="Button" parent="ModeMenu/VBoxContainer" unique_id=390567218]
+layout_mode = 2
+text = "Return to Menu"
+
+[node name="Game" parent="." unique_id=509795348 instance=ExtResource("1_i26rj")]
+visible = false
+position = Vector2(-89, -102)
+
+[connection signal="pressed" from="MainMenu/VBoxContainer/PlayButton" to="." method="PlayButtonPressed"]
+[connection signal="pressed" from="MainMenu/VBoxContainer/QuitButton" to="." method="QuitButtonPressed"]
+[connection signal="pressed" from="ModeMenu/VBoxContainer/PlayerCPU" to="." method="PlayerCPUPressed"]
+[connection signal="pressed" from="ModeMenu/VBoxContainer/PlayerPlayer" to="." method="PlayerPlayerPressed"]
+[connection signal="pressed" from="ModeMenu/VBoxContainer/Return" to="." method="ReturnModeToMainPressed"]
