@@ -10,7 +10,7 @@ public partial class PlayerMovement : Paddle
 
     public override void _Ready()
     {
-		_gm = GetNode<GameManager>("../GameManager");
+		_gm = GetNode<GameManager>("/root/GameManager");
         _initialPosition = GlobalPosition;
     }
 

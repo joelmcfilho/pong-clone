@@ -1,5 +1,5 @@
 using Godot;
-using System;
+using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 
 public partial class GameManager : Node
@@ -13,15 +13,8 @@ public partial class GameManager : Node
 	private Commands _cmds;
 	public bool isCountdownActive {get;set;}
 
-	public override void _Ready()
-	{
-		_ball = GetNode<BallBehavior>("../Ball");
-		_playerPaddle = GetNode<PlayerMovement>("../PlayerBar");
-		_aiPaddle = GetNode<AIBehavior>("../AIBar");
-		_hud = GetNode<Hud>("../Hud");
+	public GameMode gameModeSelect;
 
-		
-	}
 
 	public override async void _Process(double delta)
     {
@@ -103,5 +96,21 @@ public partial class GameManager : Node
 		
 	}
 
+	public void InitializeGame(	
+		BallBehavior ball,
+		PlayerMovement Paddle,
+		Hud hud,
+		AIBehavior player2Paddle)
+	{
+		_ball = ball;
+		_hud = hud;
+		_playerPaddle = Paddle;
+		_aiPaddle = player2Paddle;
+	}
+
+
+	
+
+	
 	
 }

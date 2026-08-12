@@ -10,7 +10,7 @@ public partial class Commands : Control
 
     public override void _Ready()
     {
-        gm = GetNode<GameManager>("../GameManager");
+        gm = GetNode<GameManager>("/root/GameManager");
 
     }
 

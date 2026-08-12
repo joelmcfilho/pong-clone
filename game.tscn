@@ -4,14 +4,29 @@
 [ext_resource type="Script" uid="uid://dsllkcspc84di" path="res://src/Actions/PlayerMovement.cs" id="1_e2o6t"]
 [ext_resource type="Script" uid="uid://b0ev2axck8mbs" path="res://src/Controllers/InitGame.cs" id="1_j5wjh"]
 [ext_resource type="Script" uid="uid://gxy3wdojy0pe" path="res://src/AI/BallBehavior.cs" id="3_fc0e3"]
+[ext_resource type="Texture2D" uid="uid://brjhi087vldkm" path="res://assets/NES - Tennis - Miscellaneous - General Sprites.png" id="3_hve3p"]
 [ext_resource type="Script" uid="uid://c15uiusx4u0be" path="res://src/AI/AIBehavior.cs" id="4_fc0e3"]
-[ext_resource type="Script" uid="uid://duxafh70twlyx" path="res://src/Controllers/GameManager.cs" id="5_7jktm"]
 [ext_resource type="Script" uid="uid://c27fottn3pwu7" path="res://src/Actors/GoalArea.cs" id="6_ryrav"]
 [ext_resource type="PackedScene" uid="uid://nqlxjuuprun6" path="res://hud_alt.tscn" id="7_eow3j"]
 [ext_resource type="PackedScene" uid="uid://f45ifuns2lma" path="res://pause_menu.tscn" id="9_vef74"]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_mfdv2"]
+atlas = ExtResource("3_hve3p")
+region = Rect2(338, 152, 26, 30)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_iotsf"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mfdv2")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e2o6t"]
-size = Vector2(128.93982, 704.87103)
+size = Vector2(124.10347, 518.3145)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_fc0e3"]
 radius = 26.504717
@@ -38,14 +53,15 @@ position = Vector2(-35, 34)
 motion_mode = 1
 script = ExtResource("1_e2o6t")
 
-[node name="Sprite2D" type="Sprite2D" parent="PlayerBar" unique_id=1752168664]
-position = Vector2(56, 267)
-scale = Vector2(0.349, 1.897)
-texture = ExtResource("1_80nbo")
+[node name="Sprite2D" type="AnimatedSprite2D" parent="PlayerBar" unique_id=1178667731]
+texture_filter = 1
+position = Vector2(50.28662, 266.63693)
+scale = Vector2(3.7726605, 6.5392776)
+sprite_frames = SubResource("SpriteFrames_iotsf")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerBar" unique_id=770517811]
-position = Vector2(56, 267)
-scale = Vector2(0.349, 0.349)
+position = Vector2(51.560497, 264.08914)
+scale = Vector2(0.34899998, 0.34899998)
 shape = SubResource("RectangleShape2D_e2o6t")
 
 [node name="Ball" type="CharacterBody2D" parent="." unique_id=805588895]
@@ -108,10 +124,6 @@ scale = Vector2(28.783222, 28.783222)
 position = Vector2(6.638692, 0.57535404)
 scale = Vector2(0.99999964, 0.99999964)
 shape = SubResource("RectangleShape2D_ryrav")
-
-[node name="GameManager" type="Node" parent="." unique_id=477410138]
-process_mode = 1
-script = ExtResource("5_7jktm")
 
 [node name="GoalArea" type="Area2D" parent="." unique_id=1170019583]
 position = Vector2(-185, 168)

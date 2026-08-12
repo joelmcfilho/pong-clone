@@ -9,10 +9,15 @@ public partial class AIBehavior : Paddle
 	private Vector2 _paddlePos = Vector2.Zero;
 	public Vector2 _initialPosAI;
 
+	private GameManager _gm;
+	
+
     public override void _Ready()
     {
 
 		_ball = GetNode<BallBehavior>("../Ball");
+		_gm = GetNode<GameManager>("/root/GameManager");
+
 		_initialPosAI = GlobalPosition;
         
     }
@@ -20,16 +25,36 @@ public partial class AIBehavior : Paddle
 
 	public override void _PhysicsProcess(double delta)
 	{
-		if(_ball._direction.X > 0)
+		if(_gm.gameModeSelect == GameMode.Single)
 		{
-			float paddleDirection = Mathf.Sign(_ball.GlobalPosition.Y - GlobalPosition.Y);
-			Velocity = new Vector2(0,paddleDirection*Speed);
-			MoveAndSlide();
+			
+			if(_ball._direction.X > 0)
+			{
+				float paddleDirection = Mathf.Sign(_ball.GlobalPosition.Y - GlobalPosition.Y);
+				Velocity = new Vector2(0,paddleDirection*Speed);
+				MoveAndSlide();
+			}
+			else
+			{
+				Velocity = Vector2.Zero;
+				MoveAndSlide();			
+			}
 		}
-		else
+		else if(_gm.gameModeSelect == GameMode.Multi)
 		{
-			Velocity = Vector2.Zero;
-			MoveAndSlide();			
+			Speed = 20f;
+			if(_gm.isCountdownActive == true)
+			{
+				return;
+			}
+			else
+			{
+				float direction = Input.GetAxis("up_player_2","down_player_2");
+
+				MoveAndSlide();
+
+				Position = new Vector2(Position.X, Mathf.Clamp((Speed * direction) + Position.Y,-150,260));
+			}	
 		}
 
 		

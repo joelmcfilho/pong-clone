@@ -7,7 +7,7 @@ public partial class GoalArea : Area2D
 
 	public override void _Ready()
 	{
-		gameManager = GetNode<GameManager>("../GameManager");
+		gameManager = GetNode<GameManager>("/root/GameManager");
 	}
 
 	private async void PlayerGoalBodyEntered(Node2D ball)

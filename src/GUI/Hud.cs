@@ -16,10 +16,20 @@ public partial class Hud : Control
 		_aiScore = GetNode<Label>("MarginContainer/Tophud/Score/Player2Score");
 		_countdownLabel = GetNode<Label>("MarginContainer2/CountdownLabel");
 		_textLabel = GetNode<Label>("MarginContainer3/TextLabel");
-		_gm = GetNode<GameManager>("../GameManager");
+		_gm = GetNode<GameManager>("/root/GameManager");
 
 		_countdownLabel.Visible = false;
 		_textLabel.Visible = false;
+
+		// NAO FUNCIONOU (TEM QUE VER ISSO AI)
+		if(_gm.gameModeSelect == GameMode.Single)
+		{
+			_aiScore.Text = "CPU";
+		}
+		else if(_gm.gameModeSelect == GameMode.Multi)
+		{
+			_aiScore.Text = "Player 2";
+		}
 	}
 
 

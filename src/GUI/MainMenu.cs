@@ -11,6 +11,7 @@ public partial class MainMenu : Control
     {
         _mainMenu = GetNode<CenterContainer>("MainMenu");
         _modeMenu = GetNode<CenterContainer>("ModeMenu");
+        _gm = GetNode<GameManager>("/root/GameManager");
 
         _mainMenu.Visible = true;
         _modeMenu.Visible = false;
@@ -32,11 +33,15 @@ public partial class MainMenu : Control
     //Mode Menu Interface
     public void PlayerPlayerPressed()
     {
-        
+        _gm.gameModeSelect = GameMode.Multi;
+        _mainMenu.Visible= false;
+        _modeMenu.Visible = false;
+        GetTree().ChangeSceneToFile("res://game.tscn");
     }
 
     public void PlayerCPUPressed()
     {
+        _gm.gameModeSelect = GameMode.Single;
         _mainMenu.Visible= false;
         _modeMenu.Visible = false;
         GetTree().ChangeSceneToFile("res://game.tscn");
