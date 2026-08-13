@@ -8,6 +8,7 @@ public partial class Hud : Control
 	private Label _aiScore;
 	private Label _countdownLabel;
 	private Label _textLabel;
+	private Label _player2Label;
 	private GameManager _gm;
 
 	public override void _Ready()
@@ -16,6 +17,7 @@ public partial class Hud : Control
 		_aiScore = GetNode<Label>("MarginContainer/Tophud/Score/Player2Score");
 		_countdownLabel = GetNode<Label>("MarginContainer2/CountdownLabel");
 		_textLabel = GetNode<Label>("MarginContainer3/TextLabel");
+		_player2Label = GetNode<Label>("MarginContainer/Tophud/Player2");
 		_gm = GetNode<GameManager>("/root/GameManager");
 
 		_countdownLabel.Visible = false;
@@ -24,11 +26,12 @@ public partial class Hud : Control
 		// NAO FUNCIONOU (TEM QUE VER ISSO AI)
 		if(_gm.gameModeSelect == GameMode.Single)
 		{
-			_aiScore.Text = "CPU";
+			_player2Label.Text = "CPU";
+
 		}
 		else if(_gm.gameModeSelect == GameMode.Multi)
 		{
-			_aiScore.Text = "Player 2";
+			_player2Label.Text = "Player 2";
 		}
 	}
 
@@ -59,7 +62,7 @@ public partial class Hud : Control
 
 		_gm.isCountdownActive = false;
 
-		ShowCountdownLabel("VAI!");
+		ShowCountdownLabel("GO!");
 
 		await ToSignal(GetTree().CreateTimer(0.6), 
 		SceneTreeTimer.SignalName.Timeout);
@@ -82,7 +85,7 @@ public partial class Hud : Control
 	public async Task ShowPointSign()
 	{
 		_textLabel.AddThemeFontSizeOverride("font_size",128);
-		_textLabel.Text = "PONTO!";
+		_textLabel.Text = "POINT!";
 		_textLabel.Visible = true;
 
 		await ToSignal(GetTree().CreateTimer(3),

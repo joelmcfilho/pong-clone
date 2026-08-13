@@ -1,14 +1,15 @@
 [gd_scene format=3 uid="uid://cvt0nocxf1roy"]
 
-[ext_resource type="Texture2D" uid="uid://c6sghkwuada3a" path="res://icon.svg" id="1_80nbo"]
 [ext_resource type="Script" uid="uid://dsllkcspc84di" path="res://src/Actions/PlayerMovement.cs" id="1_e2o6t"]
 [ext_resource type="Script" uid="uid://b0ev2axck8mbs" path="res://src/Controllers/InitGame.cs" id="1_j5wjh"]
 [ext_resource type="Script" uid="uid://gxy3wdojy0pe" path="res://src/AI/BallBehavior.cs" id="3_fc0e3"]
 [ext_resource type="Texture2D" uid="uid://brjhi087vldkm" path="res://assets/NES - Tennis - Miscellaneous - General Sprites.png" id="3_hve3p"]
 [ext_resource type="Script" uid="uid://c15uiusx4u0be" path="res://src/AI/AIBehavior.cs" id="4_fc0e3"]
+[ext_resource type="Texture2D" uid="uid://61dfciuofjub" path="res://assets/balls.png" id="5_vef74"]
 [ext_resource type="Script" uid="uid://c27fottn3pwu7" path="res://src/Actors/GoalArea.cs" id="6_ryrav"]
 [ext_resource type="PackedScene" uid="uid://nqlxjuuprun6" path="res://hud_alt.tscn" id="7_eow3j"]
 [ext_resource type="PackedScene" uid="uid://f45ifuns2lma" path="res://pause_menu.tscn" id="9_vef74"]
+[ext_resource type="Texture2D" uid="uid://cjkn0sqq58erw" path="res://assets/background_game.png" id="10_hve3p"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mfdv2"]
 atlas = ExtResource("3_hve3p")
@@ -28,8 +29,38 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e2o6t"]
 size = Vector2(124.10347, 518.3145)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_hve3p"]
+atlas = ExtResource("5_vef74")
+region = Rect2(0, 0, 40, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_mfdv2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hve3p")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_fc0e3"]
 radius = 26.504717
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vef74"]
+atlas = ExtResource("3_hve3p")
+region = Rect2(342, 148, 19, 37)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hve3p"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vef74")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fc0e3"]
 size = Vector2(1473.9618, 38)
@@ -68,10 +99,10 @@ shape = SubResource("RectangleShape2D_e2o6t")
 position = Vector2(-1, -1)
 script = ExtResource("3_fc0e3")
 
-[node name="Sprite2D" type="Sprite2D" parent="Ball" unique_id=2005434731]
-position = Vector2(574, 322.99997)
-scale = Vector2(0.415, 0.415)
-texture = ExtResource("1_80nbo")
+[node name="Sprite2D" type="AnimatedSprite2D" parent="Ball" unique_id=1630860382]
+position = Vector2(567.242, 317.56052)
+scale = Vector2(1.6242021, 1.6719743)
+sprite_frames = SubResource("SpriteFrames_mfdv2")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Ball" unique_id=1056134981]
 position = Vector2(574, 323)
@@ -82,13 +113,14 @@ position = Vector2(1140, 32)
 motion_mode = 1
 script = ExtResource("4_fc0e3")
 
-[node name="Sprite2D" type="Sprite2D" parent="AIBar" unique_id=122380777]
-position = Vector2(51.999996, 267)
-scale = Vector2(0.349, 1.897)
-texture = ExtResource("1_80nbo")
+[node name="Sprite2D" type="AnimatedSprite2D" parent="AIBar" unique_id=1225556175]
+texture_filter = 1
+position = Vector2(56.248566, 268.8577)
+scale = Vector2(-3.3810267, 6.6322827)
+sprite_frames = SubResource("SpriteFrames_hve3p")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AIBar" unique_id=2056929856]
-position = Vector2(52.5, 267)
+position = Vector2(57.452168, 268.63696)
 scale = Vector2(0.349, 0.349)
 shape = SubResource("RectangleShape2D_e2o6t")
 
@@ -131,6 +163,10 @@ script = ExtResource("6_ryrav")
 
 [node name="Hud" parent="." unique_id=750265900 instance=ExtResource("7_eow3j")]
 process_mode = 1
+offset_left = 1.2738853
+offset_top = -33.121017
+offset_right = 1.2738853
+offset_bottom = -33.121017
 
 [node name="PauseMenu" parent="." unique_id=766707054 instance=ExtResource("9_vef74")]
 process_mode = 3
@@ -138,6 +174,12 @@ offset_left = -34.999996
 offset_top = 33.999996
 offset_right = -34.999996
 offset_bottom = 33.999996
+
+[node name="Background" type="Sprite2D" parent="." unique_id=1682966350]
+z_index = -9
+position = Vector2(606.3694, 249.68153)
+scale = Vector2(1.2816267, 1.2760901)
+texture = ExtResource("10_hve3p")
 
 [connection signal="body_entered" from="PlayerGoal" to="GoalArea" method="PlayerGoalBodyEntered"]
 [connection signal="body_entered" from="AIGoal" to="GoalArea" method="AIGoalBodyEntered"]

@@ -11,6 +11,7 @@ public partial class GameManager : Node
 	private AIBehavior _aiPaddle;
 	private Hud _hud;
 	private Commands _cmds;
+	private Side _side;
 	public bool isCountdownActive {get;set;}
 
 	public GameMode gameModeSelect;
@@ -55,14 +56,14 @@ public partial class GameManager : Node
 		}
 		else if(_player2Score == 3)
 		{
-			if(side == Side.Player2)
+			if(gameModeSelect == GameMode.Multi)
 			{
 				await EndGame(Side.Player2);
 				_playerPaddle.ResetPaddle(_playerPaddle._initialPosition);
 				_aiPaddle.ResetPaddle(_aiPaddle._initialPosAI);
 				return;
 			}
-			else if(side == Side.AI)
+			else if(gameModeSelect == GameMode.Single)
 			{
 				await EndGame(Side.AI);
 				_playerPaddle.ResetPaddle(_playerPaddle._initialPosition);
