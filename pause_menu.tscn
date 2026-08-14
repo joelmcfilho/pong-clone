@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://f45ifuns2lma"]
 
 [ext_resource type="Script" uid="uid://b5nsn6f6qe8yo" path="res://events/PauseMenu.cs" id="1_hdmo1"]
+[ext_resource type="FontFile" uid="uid://m2w2b5l8qtb5" path="res://assets/super_jello/Super Jello.ttf" id="2_nwcfo"]
 
 [node name="PauseMenu" type="Control" unique_id=766707054]
 visible = false
@@ -32,10 +33,12 @@ layout_mode = 2
 
 [node name="Resume" type="Button" parent="MarginContainer/VBoxContainer" unique_id=1257201377]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_nwcfo")
 text = "Resume"
 
 [node name="Quit" type="Button" parent="MarginContainer/VBoxContainer" unique_id=1473707929]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_nwcfo")
 text = "Quit"
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Resume" to="." method="ResumeButton"]

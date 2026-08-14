@@ -1,8 +1,9 @@
 [gd_scene format=3 uid="uid://bvl22coi32tdr"]
 
-[ext_resource type="Texture2D" uid="uid://dd00mjpxry0uw" path="res://assets/background.jpg" id="1_eiy7p"]
 [ext_resource type="Script" uid="uid://bqvnfxasfs0q0" path="res://src/GUI/MainMenu.cs" id="1_h7a2f"]
 [ext_resource type="PackedScene" uid="uid://cvt0nocxf1roy" path="res://game.tscn" id="1_i26rj"]
+[ext_resource type="Texture2D" uid="uid://drgvrnu1i4vg4" path="res://assets/25681123-tenis-jogador-minimalista-atleta-acionado-dentro-tenis-jogos-vetor.jpg" id="2_qoqlk"]
+[ext_resource type="FontFile" uid="uid://m2w2b5l8qtb5" path="res://assets/super_jello/Super Jello.ttf" id="3_qoqlk"]
 
 [node name="MainMenu" type="Control" unique_id=700214640]
 layout_mode = 3
@@ -18,7 +19,7 @@ grow_vertical = 2
 script = ExtResource("1_h7a2f")
 
 [node name="Background" type="TextureRect" parent="." unique_id=535402687]
-modulate = Color(0.33324522, 0.32279643, 0.30852216, 1)
+modulate = Color(0.17047241, 0.27312493, 0.6848282, 1)
 use_parent_material = true
 layout_mode = 1
 anchors_preset = -1
@@ -28,58 +29,96 @@ offset_left = -202.0
 offset_top = -401.0
 offset_right = -176.0
 offset_bottom = -59.992004
-texture = ExtResource("1_eiy7p")
+texture = ExtResource("2_qoqlk")
+
+[node name="Title" type="Label" parent="." unique_id=1423763614]
+layout_mode = 0
+offset_left = -53.0
+offset_top = -147.0
+offset_right = 687.0
+offset_bottom = -75.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 25
+theme_override_fonts/font = ExtResource("3_qoqlk")
+theme_override_font_sizes/font_size = 65
+text = "ANOTHER PONG CLONE..."
 
 [node name="MainMenu" type="CenterContainer" parent="." unique_id=1901078051]
+visible = false
+custom_minimum_size = Vector2(200, 80)
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 0.58100003
 anchor_bottom = 0.328
-offset_left = 116.0
-offset_top = -150.0
-offset_right = 2.6879883
-offset_bottom = 86.45599
+offset_left = 725.0
+offset_top = 178.0
+offset_right = 232.68799
+offset_bottom = 91.45599
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MainMenu" unique_id=1763692839]
 layout_mode = 2
 
-[node name="Title" type="Label" parent="MainMenu/VBoxContainer" unique_id=1423763614]
-layout_mode = 2
-text = "ANOTHER PONG CLONE..."
-
 [node name="PlayButton" type="Button" parent="MainMenu/VBoxContainer" unique_id=1739450423]
+custom_minimum_size = Vector2(200, 100)
 layout_mode = 2
+theme_override_fonts/font = ExtResource("3_qoqlk")
+theme_override_font_sizes/font_size = 55
 text = "Play"
 
 [node name="QuitButton" type="Button" parent="MainMenu/VBoxContainer" unique_id=1516237299]
+custom_minimum_size = Vector2(200, 100)
 layout_mode = 2
+theme_override_fonts/font = ExtResource("3_qoqlk")
+theme_override_font_sizes/font_size = 55
 text = "Quit"
 
-[node name="ModeMenu" type="CenterContainer" parent="." unique_id=819711579]
-visible = false
+[node name="ModeMenuText" type="Label" parent="." unique_id=883556456]
 layout_mode = 0
-offset_left = 102.0
-offset_top = -52.0
-offset_right = 694.0
-offset_bottom = 212.0
+offset_left = 483.0
+offset_top = 116.0
+offset_right = 908.0
+offset_bottom = 158.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("3_qoqlk")
+theme_override_font_sizes/font_size = 38
+text = "Choose your Game Mode!"
+
+[node name="ModeMenu" type="CenterContainer" parent="." unique_id=819711579]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.3654514
+anchor_top = 0.3101852
+anchor_right = 0.87900007
+anchor_bottom = 0.735
+offset_left = 221.0
+offset_top = -36.0
+offset_right = -34.608093
+offset_bottom = -103.28
 
 [node name="VBoxContainer" type="VBoxContainer" parent="ModeMenu" unique_id=70434052]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="ModeMenu/VBoxContainer" unique_id=883556456]
-layout_mode = 2
-text = "Choose your Game Mode!"
-
 [node name="PlayerCPU" type="Button" parent="ModeMenu/VBoxContainer" unique_id=2043286234]
+custom_minimum_size = Vector2(200, 75)
 layout_mode = 2
+theme_override_fonts/font = ExtResource("3_qoqlk")
+theme_override_font_sizes/font_size = 26
 text = "Player VS CPU"
 
 [node name="PlayerPlayer" type="Button" parent="ModeMenu/VBoxContainer" unique_id=1727087594]
+custom_minimum_size = Vector2(0, 75)
 layout_mode = 2
+theme_override_fonts/font = ExtResource("3_qoqlk")
+theme_override_font_sizes/font_size = 22
 text = "Player VS Player"
 
 [node name="Return" type="Button" parent="ModeMenu/VBoxContainer" unique_id=390567218]
+custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
+theme_override_fonts/font = ExtResource("3_qoqlk")
+theme_override_font_sizes/font_size = 19
 text = "Return to Menu"
 
 [node name="Game" parent="." unique_id=509795348 instance=ExtResource("1_i26rj")]

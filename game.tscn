@@ -15,11 +15,18 @@
 atlas = ExtResource("3_hve3p")
 region = Rect2(338, 152, 26, 30)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_iotsf"]
+atlas = ExtResource("3_hve3p")
+region = Rect2(468, 151, 20, 30)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_iotsf"]
 animations = [{
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_mfdv2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iotsf")
 }],
 "loop": true,
 "name": &"default",
@@ -79,6 +86,26 @@ script = ExtResource("1_j5wjh")
 position = Vector2(608, 250.265)
 scale = Vector2(7.235, 7.235)
 
+[node name="Background" type="Sprite2D" parent="." unique_id=1682966350]
+z_index = -9
+position = Vector2(606.3693, 249.68153)
+scale = Vector2(1.2816267, 1.2760901)
+texture = ExtResource("10_hve3p")
+
+[node name="Hud" parent="." unique_id=750265900 instance=ExtResource("7_eow3j")]
+process_mode = 1
+offset_left = 1.2738851
+offset_top = -33.121017
+offset_right = 1.2738851
+offset_bottom = -33.121017
+
+[node name="PauseMenu" parent="." unique_id=766707054 instance=ExtResource("9_vef74")]
+process_mode = 3
+offset_left = -34.999996
+offset_top = 33.999996
+offset_right = -34.999996
+offset_bottom = 33.999996
+
 [node name="PlayerBar" type="CharacterBody2D" parent="." unique_id=2066055655]
 position = Vector2(-35, 34)
 motion_mode = 1
@@ -89,6 +116,7 @@ texture_filter = 1
 position = Vector2(50.28662, 266.63693)
 scale = Vector2(3.7726605, 6.5392776)
 sprite_frames = SubResource("SpriteFrames_iotsf")
+speed_scale = 0.5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerBar" unique_id=770517811]
 position = Vector2(51.560497, 264.08914)
@@ -100,12 +128,12 @@ position = Vector2(-1, -1)
 script = ExtResource("3_fc0e3")
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="Ball" unique_id=1630860382]
-position = Vector2(567.242, 317.56052)
+position = Vector2(601.6369, 299.7261)
 scale = Vector2(1.6242021, 1.6719743)
 sprite_frames = SubResource("SpriteFrames_mfdv2")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Ball" unique_id=1056134981]
-position = Vector2(574, 323)
+position = Vector2(608.3949, 305.1656)
 shape = SubResource("CircleShape2D_fc0e3")
 
 [node name="AIBar" type="CharacterBody2D" parent="." unique_id=1211343537]
@@ -160,26 +188,6 @@ shape = SubResource("RectangleShape2D_ryrav")
 [node name="GoalArea" type="Area2D" parent="." unique_id=1170019583]
 position = Vector2(-185, 168)
 script = ExtResource("6_ryrav")
-
-[node name="Hud" parent="." unique_id=750265900 instance=ExtResource("7_eow3j")]
-process_mode = 1
-offset_left = 1.2738853
-offset_top = -33.121017
-offset_right = 1.2738853
-offset_bottom = -33.121017
-
-[node name="PauseMenu" parent="." unique_id=766707054 instance=ExtResource("9_vef74")]
-process_mode = 3
-offset_left = -34.999996
-offset_top = 33.999996
-offset_right = -34.999996
-offset_bottom = 33.999996
-
-[node name="Background" type="Sprite2D" parent="." unique_id=1682966350]
-z_index = -9
-position = Vector2(606.3694, 249.68153)
-scale = Vector2(1.2816267, 1.2760901)
-texture = ExtResource("10_hve3p")
 
 [connection signal="body_entered" from="PlayerGoal" to="GoalArea" method="PlayerGoalBodyEntered"]
 [connection signal="body_entered" from="AIGoal" to="GoalArea" method="AIGoalBodyEntered"]

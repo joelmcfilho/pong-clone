@@ -26,12 +26,14 @@ public partial class PlayerMovement : Paddle
 		{
 			float direction = Input.GetAxis("ui_up","ui_down");
 
+
 			MoveAndSlide();
 
 			Position = new Vector2(Position.X, Mathf.Clamp((Speed * direction) + Position.Y,-150,260));
 		}		
 		
 	}
+	
 
 
 }
