@@ -10,6 +10,7 @@ public partial class PlayerMovement : Paddle
 
     public override void _Ready()
     {
+		base._Ready();
 		_gm = GetNode<GameManager>("/root/GameManager");
         _initialPosition = GlobalPosition;
     }
@@ -25,7 +26,7 @@ public partial class PlayerMovement : Paddle
 		else
 		{
 			float direction = Input.GetAxis("ui_up","ui_down");
-
+			AnimationControl(direction);
 
 			MoveAndSlide();
 

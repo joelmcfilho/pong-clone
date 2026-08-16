@@ -19,6 +19,14 @@ region = Rect2(338, 152, 26, 30)
 atlas = ExtResource("3_hve3p")
 region = Rect2(468, 151, 20, 30)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_lc2xo"]
+atlas = ExtResource("3_hve3p")
+region = Rect2(315, 152, 26, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_215e1"]
+atlas = ExtResource("3_hve3p")
+region = Rect2(315, 197, 21, 33)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_iotsf"]
 animations = [{
 "frames": [{
@@ -29,7 +37,23 @@ animations = [{
 "texture": SubResource("AtlasTexture_iotsf")
 }],
 "loop": true,
-"name": &"default",
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lc2xo")
+}],
+"loop": true,
+"name": &"move_down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_215e1")
+}],
+"loop": true,
+"name": &"move_up",
 "speed": 5.0
 }]
 
@@ -111,11 +135,12 @@ position = Vector2(-35, 34)
 motion_mode = 1
 script = ExtResource("1_e2o6t")
 
-[node name="Sprite2D" type="AnimatedSprite2D" parent="PlayerBar" unique_id=1178667731]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="PlayerBar" unique_id=1178667731]
 texture_filter = 1
 position = Vector2(50.28662, 266.63693)
 scale = Vector2(3.7726605, 6.5392776)
 sprite_frames = SubResource("SpriteFrames_iotsf")
+animation = &"move_down"
 speed_scale = 0.5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerBar" unique_id=770517811]
