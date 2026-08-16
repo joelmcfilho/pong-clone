@@ -15,6 +15,7 @@ public partial class AIBehavior : Paddle
     public override void _Ready()
     {
 
+		base._Ready();
 		_ball = GetNode<BallBehavior>("../Ball");
 		_gm = GetNode<GameManager>("/root/GameManager");
 
@@ -32,11 +33,13 @@ public partial class AIBehavior : Paddle
 			{
 				float paddleDirection = Mathf.Sign(_ball.GlobalPosition.Y - GlobalPosition.Y);
 				Velocity = new Vector2(0,paddleDirection*Speed);
+				AnimationControl(paddleDirection);
 				MoveAndSlide();
 			}
 			else
 			{
 				Velocity = Vector2.Zero;
+				AnimationControl(0);
 				MoveAndSlide();			
 			}
 		}
@@ -50,7 +53,8 @@ public partial class AIBehavior : Paddle
 			else
 			{
 				float direction = Input.GetAxis("up_player_2","down_player_2");
-
+				
+				AnimationControl(direction);
 				MoveAndSlide();
 
 				Position = new Vector2(Position.X, Mathf.Clamp((Speed * direction) + Position.Y,-150,260));

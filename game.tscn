@@ -78,18 +78,33 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_fc0e3"]
 radius = 26.504717
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_vef74"]
-atlas = ExtResource("3_hve3p")
-region = Rect2(342, 148, 19, 37)
-
 [sub_resource type="SpriteFrames" id="SpriteFrames_hve3p"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_vef74")
+"texture": SubResource("AtlasTexture_mfdv2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iotsf")
 }],
 "loop": true,
-"name": &"default",
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lc2xo")
+}],
+"loop": true,
+"name": &"move_down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_215e1")
+}],
+"loop": true,
+"name": &"move_up",
 "speed": 5.0
 }]
 
@@ -137,11 +152,10 @@ script = ExtResource("1_e2o6t")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="PlayerBar" unique_id=1178667731]
 texture_filter = 1
-position = Vector2(50.28662, 266.63693)
-scale = Vector2(3.7726605, 6.5392776)
+position = Vector2(50.286613, 266.63693)
+scale = Vector2(3.77266, 6.5392776)
 sprite_frames = SubResource("SpriteFrames_iotsf")
-animation = &"move_down"
-speed_scale = 0.5
+animation = &"idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerBar" unique_id=770517811]
 position = Vector2(51.560497, 264.08914)
@@ -152,7 +166,7 @@ shape = SubResource("RectangleShape2D_e2o6t")
 position = Vector2(-1, -1)
 script = ExtResource("3_fc0e3")
 
-[node name="Sprite2D" type="AnimatedSprite2D" parent="Ball" unique_id=1630860382]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Ball" unique_id=1630860382]
 position = Vector2(601.6369, 299.7261)
 scale = Vector2(1.6242021, 1.6719743)
 sprite_frames = SubResource("SpriteFrames_mfdv2")
@@ -166,11 +180,12 @@ position = Vector2(1140, 32)
 motion_mode = 1
 script = ExtResource("4_fc0e3")
 
-[node name="Sprite2D" type="AnimatedSprite2D" parent="AIBar" unique_id=1225556175]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="AIBar" unique_id=1225556175]
 texture_filter = 1
 position = Vector2(56.248566, 268.8577)
 scale = Vector2(-3.3810267, 6.6322827)
 sprite_frames = SubResource("SpriteFrames_hve3p")
+animation = &"idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AIBar" unique_id=2056929856]
 position = Vector2(57.452168, 268.63696)

@@ -9,18 +9,17 @@ public partial class Paddle : CharacterBody2D
 
     public override void _Ready()
     {
-        GD.Print($"PADDLE READY: {Name}");
+
 
         _sprite = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
 
-        GD.Print($"SPRITE: {_sprite}");
     }
 
     public void AnimationControl(float direction)
     {
         if(_sprite == null)
         {
-            GD.PrintErr($"ERRO: _sprite é NULL no Paddle {Name}");
+            GD.PrintErr($"ERRO: _sprite is NULL on Node {Name}");
             return;
         }
 
