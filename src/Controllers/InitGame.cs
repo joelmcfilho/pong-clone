@@ -27,6 +27,7 @@ public partial class InitGame : Node2D
 		await _hud.Countdown();
 
 		_ball.StartBall();
+		_ball.BallAnimationControl();
 
 		
 	}

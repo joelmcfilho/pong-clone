@@ -14,19 +14,4 @@ public partial class Commands : Control
 
     }
 
-
-    //Metodos de Debug, remover na versão final
-    public async Task DebugWin(Side side)
-    {
-        if(side == Side.Player)
-        {
-            await gm.EndGame(Side.Player);
-        }
-        if(side == Side.AI)
-        {
-            await gm.EndGame(Side.AI);
-        }
-    }
-
-    
 }

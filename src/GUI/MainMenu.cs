@@ -4,29 +4,43 @@ using Godot;
 public partial class MainMenu : Control
 {
     private CenterContainer _mainMenu;
-    private CenterContainer _modeMenu;
-    private Label _modeMenuText;
+    private CenterContainer _classicMenu;
+    private CenterContainer _survivalMenu;
+    private Label _classicMenuText;
+    private Label _survivalMenuText;
+
+
     private GameManager _gm;
 
     public override void _Ready()
     {
         _mainMenu = GetNode<CenterContainer>("MainMenu");
-        _modeMenu = GetNode<CenterContainer>("ModeMenu");
+        _classicMenu = GetNode<CenterContainer>("ClassicModeMenu");
+        _survivalMenu = GetNode<CenterContainer>("SurvivalModeMenu");
         _gm = GetNode<GameManager>("/root/GameManager");
-        _modeMenuText = GetNode<Label>("ModeMenuText");
+        _classicMenuText = GetNode<Label>("ClassicMenuText");
+        _survivalMenuText = GetNode<Label>("SurvivalMenuText");
 
         _mainMenu.Visible = true;
-        _modeMenu.Visible = false;
-        _modeMenuText.Visible = false;
+        _classicMenu.Visible = false;
+        _survivalMenu.Visible = false;
+        _classicMenuText.Visible = false;
 
     }
 
     //Main Menu Interface
-    public void PlayButtonPressed()
+    public void ClassicButtonPressed()
     {
         _mainMenu.Visible= false;
-        _modeMenu.Visible = true;
-        _modeMenuText.Visible = true;
+        _classicMenu.Visible = true;
+        _classicMenuText.Visible = true;
+    }
+
+    public void SurvivalButtonPressed()
+    {
+        _mainMenu.Visible = false;
+        _survivalMenuText.Visible = true;
+        _survivalMenu.Visible = true;
     }
 
     public void QuitButtonPressed()
@@ -34,13 +48,13 @@ public partial class MainMenu : Control
         GetTree().Quit();
     }
 
-    //Mode Menu Interface
+    //Classic Menu Interface
     public void PlayerPlayerPressed()
     {
         _gm.gameModeSelect = GameMode.Multi;
         _mainMenu.Visible= false;
-        _modeMenu.Visible = false;
-        _modeMenuText.Visible = false;
+        _classicMenu.Visible = false;
+        _classicMenuText.Visible = false;
         GetTree().ChangeSceneToFile("res://game.tscn");
     }
 
@@ -48,16 +62,37 @@ public partial class MainMenu : Control
     {
         _gm.gameModeSelect = GameMode.Single;
         _mainMenu.Visible= false;
-        _modeMenu.Visible = false;
-        _modeMenuText.Visible = false;
+        _classicMenu.Visible = false;
+        _classicMenuText.Visible = false;
         GetTree().ChangeSceneToFile("res://game.tscn");
     }
     public void ReturnModeToMainPressed()
     {
         _mainMenu.Visible= true;
-        _modeMenu.Visible = false;
-        _modeMenuText.Visible = false;
+        _classicMenu.Visible = false;
+        _classicMenuText.Visible = false;
     }
+
+    //Survival Menu Interface
+    public void StartSurvivalButtonPressed()
+    {
+        _gm.gameModeSelect = GameMode.Survival;
+    }
+
+    public void HiScoreSurvivalButtonPressed()
+    {
+        
+    }
+    
+    public void ReturnSurvivalToMain()
+    {
+        _survivalMenuText.Visible = false;
+        _survivalMenu.Visible = false;
+        _mainMenu.Visible = true;
+    }
+
+    
+    
 
 
     

@@ -7,12 +7,15 @@ public partial class BallBehavior : CharacterBody2D
 
 	public Vector2 _direction = Vector2.Zero;
 	private Vector2 _spawnPosition;
+	private AnimatedSprite2D _sprite;
+	private GameMode _gameMode;
 
 	private Hud _hud;
 
 	public async override void _Ready()
 	{
 		_hud = GetNode<Hud>("../Hud");
+		_sprite = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
 
 		_spawnPosition = GlobalPosition;
 
@@ -43,17 +46,24 @@ public partial class BallBehavior : CharacterBody2D
 
 	private void HandleCollisions(KinematicCollision2D collision)
 	{
-
-		if(collision.GetCollider() is Paddle paddle)
+		if(_gameMode == GameMode.Single || _gameMode == GameMode.Multi)
 		{
-			float offset = (GlobalPosition.Y - paddle.Position.Y)/50f;
+			if(collision.GetCollider() is Paddle paddle)
+			{
+				float offset = (GlobalPosition.Y - paddle.Position.Y)/50f;
 
-			_direction = new Vector2(-_direction.X,offset);
+				_direction = new Vector2(-_direction.X,offset);
+			}
+			else
+			{
+				_direction = _direction.Bounce(collision.GetNormal());
+			}
 		}
 		else
 		{
-			_direction = _direction.Bounce(collision.GetNormal());
+			
 		}
+
 		
 
 	} 
@@ -64,9 +74,18 @@ public partial class BallBehavior : CharacterBody2D
 		GlobalPosition = _spawnPosition;
 		_direction = Vector2.Zero;
 
-		await _hud.Countdown();
+	}
 
-		StartBall();
-		
+	public void BallAnimationControl()
+	{
+		if(_sprite == null)
+        {
+            GD.PrintErr($"ERRO: _sprite is NULL on Node {Name}");
+            return;
+        }
+		else
+		{
+			_sprite.Play("default");
+		}
 	}
 }

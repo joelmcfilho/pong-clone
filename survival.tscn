@@ -1,30 +1,29 @@
-[gd_scene format=3 uid="uid://cvt0nocxf1roy"]
+[gd_scene format=3 uid="uid://2aflhdgy4npx"]
 
-[ext_resource type="Script" uid="uid://dsllkcspc84di" path="res://src/Actions/PlayerMovement.cs" id="1_e2o6t"]
-[ext_resource type="Script" uid="uid://b0ev2axck8mbs" path="res://src/Controllers/InitGame.cs" id="1_j5wjh"]
-[ext_resource type="Script" uid="uid://gxy3wdojy0pe" path="res://src/AI/BallBehavior.cs" id="3_fc0e3"]
-[ext_resource type="Texture2D" uid="uid://brjhi087vldkm" path="res://assets/NES - Tennis - Miscellaneous - General Sprites.png" id="3_hve3p"]
-[ext_resource type="Script" uid="uid://c15uiusx4u0be" path="res://src/AI/AIBehavior.cs" id="4_fc0e3"]
-[ext_resource type="Script" uid="uid://c27fottn3pwu7" path="res://src/Actors/GoalArea.cs" id="6_ryrav"]
-[ext_resource type="PackedScene" uid="uid://nqlxjuuprun6" path="res://hud_alt.tscn" id="7_eow3j"]
-[ext_resource type="Texture2D" uid="uid://cmtv0htwd52jd" path="res://assets/ball_sprite.png" id="8_hve3p"]
-[ext_resource type="PackedScene" uid="uid://f45ifuns2lma" path="res://pause_menu.tscn" id="9_vef74"]
-[ext_resource type="Texture2D" uid="uid://cjkn0sqq58erw" path="res://assets/background_game.png" id="10_hve3p"]
+[ext_resource type="Script" uid="uid://b0ev2axck8mbs" path="res://src/Controllers/InitGame.cs" id="1_6d2l4"]
+[ext_resource type="Texture2D" uid="uid://cjkn0sqq58erw" path="res://assets/background_game.png" id="2_xbx4m"]
+[ext_resource type="PackedScene" uid="uid://c2sit4vyctvdg" path="res://hud_survival.tscn" id="3_b1jyj"]
+[ext_resource type="PackedScene" uid="uid://f45ifuns2lma" path="res://pause_menu.tscn" id="4_gn857"]
+[ext_resource type="Script" uid="uid://dsllkcspc84di" path="res://src/Actions/PlayerMovement.cs" id="5_gjf0t"]
+[ext_resource type="Texture2D" uid="uid://brjhi087vldkm" path="res://assets/NES - Tennis - Miscellaneous - General Sprites.png" id="6_cdm3r"]
+[ext_resource type="Script" uid="uid://gxy3wdojy0pe" path="res://src/AI/BallBehavior.cs" id="7_rwvoj"]
+[ext_resource type="Texture2D" uid="uid://cmtv0htwd52jd" path="res://assets/ball_sprite.png" id="8_qbdmv"]
+[ext_resource type="Script" uid="uid://c27fottn3pwu7" path="res://src/Actors/GoalArea.cs" id="10_ac4mc"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mfdv2"]
-atlas = ExtResource("3_hve3p")
+atlas = ExtResource("6_cdm3r")
 region = Rect2(338, 152, 26, 30)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_iotsf"]
-atlas = ExtResource("3_hve3p")
+atlas = ExtResource("6_cdm3r")
 region = Rect2(468, 151, 20, 30)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lc2xo"]
-atlas = ExtResource("3_hve3p")
+atlas = ExtResource("6_cdm3r")
 region = Rect2(315, 152, 26, 30)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_215e1"]
-atlas = ExtResource("3_hve3p")
+atlas = ExtResource("6_cdm3r")
 region = Rect2(315, 197, 21, 33)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_iotsf"]
@@ -61,19 +60,19 @@ animations = [{
 size = Vector2(124.10347, 518.3145)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7sc4i"]
-atlas = ExtResource("8_hve3p")
+atlas = ExtResource("8_qbdmv")
 region = Rect2(0, 0, 41, 52)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_80cx4"]
-atlas = ExtResource("8_hve3p")
+atlas = ExtResource("8_qbdmv")
 region = Rect2(41, 0, 41, 52)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_e8heu"]
-atlas = ExtResource("8_hve3p")
+atlas = ExtResource("8_qbdmv")
 region = Rect2(82, 0, 41, 52)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rvswv"]
-atlas = ExtResource("8_hve3p")
+atlas = ExtResource("8_qbdmv")
 region = Rect2(0, 52, 41, 52)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_mfdv2"]
@@ -99,48 +98,18 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_fc0e3"]
 radius = 26.504717
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_hve3p"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_mfdv2")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_iotsf")
-}],
-"loop": true,
-"name": &"idle",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_lc2xo")
-}],
-"loop": true,
-"name": &"move_down",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_215e1")
-}],
-"loop": true,
-"name": &"move_up",
-"speed": 5.0
-}]
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fc0e3"]
 size = Vector2(1473.9618, 38)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7jktm"]
 size = Vector2(16.679264, 117.86794)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ryrav"]
-size = Vector2(3.4684143, 22.023848)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6d2l4"]
+size = Vector2(115.923645, 636.25806)
 
 [node name="Game" type="Node2D" unique_id=509795348]
 scale = Vector2(0.785, 0.785)
-script = ExtResource("1_j5wjh")
+script = ExtResource("1_6d2l4")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=780674992]
 position = Vector2(608, 250.265)
@@ -150,16 +119,11 @@ scale = Vector2(7.235, 7.235)
 z_index = -9
 position = Vector2(606.3693, 249.68153)
 scale = Vector2(1.2816267, 1.2760901)
-texture = ExtResource("10_hve3p")
+texture = ExtResource("2_xbx4m")
 
-[node name="Hud" parent="." unique_id=750265900 instance=ExtResource("7_eow3j")]
-process_mode = 1
-offset_left = 1.2738851
-offset_top = -33.121017
-offset_right = 1.2738851
-offset_bottom = -33.121017
+[node name="Hud" parent="." unique_id=750265900 instance=ExtResource("3_b1jyj")]
 
-[node name="PauseMenu" parent="." unique_id=766707054 instance=ExtResource("9_vef74")]
+[node name="PauseMenu" parent="." unique_id=766707054 instance=ExtResource("4_gn857")]
 process_mode = 3
 offset_left = -34.999996
 offset_top = 33.999996
@@ -169,7 +133,7 @@ offset_bottom = 33.999996
 [node name="PlayerBar" type="CharacterBody2D" parent="." unique_id=2066055655]
 position = Vector2(-35, 34)
 motion_mode = 1
-script = ExtResource("1_e2o6t")
+script = ExtResource("5_gjf0t")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="PlayerBar" unique_id=1178667731]
 texture_filter = 1
@@ -185,7 +149,7 @@ shape = SubResource("RectangleShape2D_e2o6t")
 
 [node name="Ball" type="CharacterBody2D" parent="." unique_id=805588895]
 position = Vector2(-1, -1)
-script = ExtResource("3_fc0e3")
+script = ExtResource("7_rwvoj")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Ball" unique_id=1630860382]
 position = Vector2(601.6369, 299.7261)
@@ -197,23 +161,6 @@ speed_scale = 2.0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Ball" unique_id=1056134981]
 position = Vector2(608.3949, 305.1656)
 shape = SubResource("CircleShape2D_fc0e3")
-
-[node name="AIBar" type="CharacterBody2D" parent="." unique_id=1211343537]
-position = Vector2(1140, 32)
-motion_mode = 1
-script = ExtResource("4_fc0e3")
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="AIBar" unique_id=1225556175]
-texture_filter = 1
-position = Vector2(56.248566, 268.8577)
-scale = Vector2(-3.3810267, 6.6322827)
-sprite_frames = SubResource("SpriteFrames_hve3p")
-animation = &"idle"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="AIBar" unique_id=2056929856]
-position = Vector2(57.452168, 268.63696)
-scale = Vector2(0.349, 0.349)
-shape = SubResource("RectangleShape2D_e2o6t")
 
 [node name="BottomWall" type="StaticBody2D" parent="." unique_id=772910472]
 position = Vector2(18, 655)
@@ -239,18 +186,18 @@ scale = Vector2(5.365, 5.365)
 position = Vector2(-33.612537, 59.832695)
 shape = SubResource("RectangleShape2D_7jktm")
 
-[node name="AIGoal" type="Area2D" parent="." unique_id=1099911479]
-position = Vector2(1187.261, 304.45856)
-scale = Vector2(28.783222, 28.783222)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="AIGoal" unique_id=1224795660]
-position = Vector2(6.638692, 0.57535404)
-scale = Vector2(0.99999964, 0.99999964)
-shape = SubResource("RectangleShape2D_ryrav")
-
 [node name="GoalArea" type="Area2D" parent="." unique_id=1170019583]
 position = Vector2(-185, 168)
-script = ExtResource("6_ryrav")
+script = ExtResource("10_ac4mc")
+
+[node name="RightWall" type="StaticBody2D" parent="." unique_id=1288570577]
+position = Vector2(1354.14, 268.7898)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RightWall" unique_id=1603512399]
+position = Vector2(-64.96814, 50.613037)
+scale = Vector2(0.9999998, 0.9999998)
+shape = SubResource("RectangleShape2D_6d2l4")
+
+[node name="Sprite2D" type="Sprite2D" parent="RightWall" unique_id=385192907]
 
 [connection signal="body_entered" from="PlayerGoal" to="GoalArea" method="PlayerGoalBodyEntered"]
-[connection signal="body_entered" from="AIGoal" to="GoalArea" method="AIGoalBodyEntered"]

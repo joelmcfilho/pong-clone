@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://cvt0nocxf1roy" path="res://game.tscn" id="1_i26rj"]
 [ext_resource type="Texture2D" uid="uid://drgvrnu1i4vg4" path="res://assets/25681123-tenis-jogador-minimalista-atleta-acionado-dentro-tenis-jogos-vetor.jpg" id="2_qoqlk"]
 [ext_resource type="FontFile" uid="uid://m2w2b5l8qtb5" path="res://assets/super_jello/Super Jello.ttf" id="3_qoqlk"]
+[ext_resource type="Texture2D" uid="uid://ckkqspn7sncs5" path="res://assets/oathbreaker_studios_logo_redim.png" id="5_iwfq2"]
 
 [node name="MainMenu" type="Control" unique_id=700214640]
 layout_mode = 3
@@ -51,20 +52,33 @@ layout_mode = 1
 anchors_preset = -1
 anchor_right = 0.58100003
 anchor_bottom = 0.328
-offset_left = 725.0
-offset_top = 178.0
-offset_right = 232.68799
-offset_bottom = 91.45599
+offset_left = 554.0
+offset_top = 47.0
+offset_right = 257.688
+offset_bottom = 252.456
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MainMenu" unique_id=1763692839]
 layout_mode = 2
 
-[node name="PlayButton" type="Button" parent="MainMenu/VBoxContainer" unique_id=1739450423]
+[node name="ClassicMode" type="Button" parent="MainMenu/VBoxContainer" unique_id=1739450423]
 custom_minimum_size = Vector2(200, 100)
 layout_mode = 2
+tooltip_text = "Play an standard pong match!"
 theme_override_fonts/font = ExtResource("3_qoqlk")
 theme_override_font_sizes/font_size = 55
-text = "Play"
+text = "Classic Match"
+
+[node name="SurvivalMode" type="Button" parent="MainMenu/VBoxContainer" unique_id=440652343]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+tooltip_text = "Challenge yourself by playing a 
+kind of \"Squash Pong\" against yourself. 
+Try to defend against an 
+increasing number of balls and see 
+how long you can last!"
+theme_override_fonts/font = ExtResource("3_qoqlk")
+theme_override_font_sizes/font_size = 55
+text = "Survival Match"
 
 [node name="QuitButton" type="Button" parent="MainMenu/VBoxContainer" unique_id=1516237299]
 custom_minimum_size = Vector2(200, 100)
@@ -73,60 +87,110 @@ theme_override_fonts/font = ExtResource("3_qoqlk")
 theme_override_font_sizes/font_size = 55
 text = "Quit"
 
-[node name="ModeMenuText" type="Label" parent="." unique_id=883556456]
-layout_mode = 0
-offset_left = 483.0
-offset_top = 116.0
-offset_right = 908.0
-offset_bottom = 158.0
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 5
-theme_override_fonts/font = ExtResource("3_qoqlk")
-theme_override_font_sizes/font_size = 38
-text = "Choose your Game Mode!"
-
-[node name="ModeMenu" type="CenterContainer" parent="." unique_id=819711579]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.3654514
-anchor_top = 0.3101852
-anchor_right = 0.87900007
-anchor_bottom = 0.735
-offset_left = 221.0
-offset_top = -36.0
-offset_right = -34.608093
-offset_bottom = -103.28
-
-[node name="VBoxContainer" type="VBoxContainer" parent="ModeMenu" unique_id=70434052]
-layout_mode = 2
-
-[node name="PlayerCPU" type="Button" parent="ModeMenu/VBoxContainer" unique_id=2043286234]
-custom_minimum_size = Vector2(200, 75)
-layout_mode = 2
-theme_override_fonts/font = ExtResource("3_qoqlk")
-theme_override_font_sizes/font_size = 26
-text = "Player VS CPU"
-
-[node name="PlayerPlayer" type="Button" parent="ModeMenu/VBoxContainer" unique_id=1727087594]
-custom_minimum_size = Vector2(0, 75)
-layout_mode = 2
-theme_override_fonts/font = ExtResource("3_qoqlk")
-theme_override_font_sizes/font_size = 22
-text = "Player VS Player"
-
-[node name="Return" type="Button" parent="ModeMenu/VBoxContainer" unique_id=390567218]
-custom_minimum_size = Vector2(0, 50)
-layout_mode = 2
-theme_override_fonts/font = ExtResource("3_qoqlk")
-theme_override_font_sizes/font_size = 19
-text = "Return to Menu"
-
 [node name="Game" parent="." unique_id=509795348 instance=ExtResource("1_i26rj")]
 visible = false
 position = Vector2(-89, -102)
 
-[connection signal="pressed" from="MainMenu/VBoxContainer/PlayButton" to="." method="PlayButtonPressed"]
+[node name="StudioLogo" type="Sprite2D" parent="." unique_id=714957614]
+texture_filter = 1
+position = Vector2(-123, 349.99997)
+scale = Vector2(1.164428, 1.2165564)
+texture = ExtResource("5_iwfq2")
+
+[node name="ClassicMenuText" type="Label" parent="." unique_id=883556456]
+layout_mode = 0
+offset_left = 354.0
+offset_top = 70.0
+offset_right = 922.0
+offset_bottom = 158.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("3_qoqlk")
+theme_override_font_sizes/font_size = 51
+text = "Choose your Game Mode!"
+
+[node name="ClassicModeMenu" type="CenterContainer" parent="." unique_id=159853461]
+layout_mode = 0
+offset_left = 539.0
+offset_top = 61.0
+offset_right = 939.0
+offset_bottom = 476.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ClassicModeMenu" unique_id=70434052]
+layout_mode = 2
+
+[node name="PlayerCPU" type="Button" parent="ClassicModeMenu/VBoxContainer" unique_id=2043286234]
+custom_minimum_size = Vector2(200, 100)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_qoqlk")
+theme_override_font_sizes/font_size = 38
+text = "Player VS CPU"
+
+[node name="PlayerPlayer" type="Button" parent="ClassicModeMenu/VBoxContainer" unique_id=1727087594]
+custom_minimum_size = Vector2(200, 100)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_qoqlk")
+theme_override_font_sizes/font_size = 35
+text = "Player VS Player"
+
+[node name="Return" type="Button" parent="ClassicModeMenu/VBoxContainer" unique_id=390567218]
+custom_minimum_size = Vector2(370, 50)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_qoqlk")
+theme_override_font_sizes/font_size = 25
+text = "Return to Menu"
+
+[node name="SurvivalMenuText" type="Label" parent="." unique_id=692160795]
+visible = false
+layout_mode = 0
+offset_left = 268.0
+offset_top = 15.0
+offset_right = 929.0
+offset_bottom = 128.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("3_qoqlk")
+theme_override_font_sizes/font_size = 50
+text = "Every 5 seconds, another ball 
+enters the Court!"
+horizontal_alignment = 2
+
+[node name="SurvivalModeMenu" type="CenterContainer" parent="." unique_id=1926911736]
+visible = false
+layout_mode = 0
+offset_left = 558.0
+offset_top = 76.0
+offset_right = 928.0
+offset_bottom = 459.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="SurvivalModeMenu" unique_id=985932563]
+layout_mode = 2
+
+[node name="Start" type="Button" parent="SurvivalModeMenu/VBoxContainer" unique_id=1822049262]
+custom_minimum_size = Vector2(370, 100)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_qoqlk")
+theme_override_font_sizes/font_size = 40
+text = "Start"
+
+[node name="Hi-Scores" type="Button" parent="SurvivalModeMenu/VBoxContainer" unique_id=512112514]
+custom_minimum_size = Vector2(370, 100)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_qoqlk")
+theme_override_font_sizes/font_size = 39
+text = "Hi-Scores"
+
+[node name="Return" type="Button" parent="SurvivalModeMenu/VBoxContainer" unique_id=1426726613]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_qoqlk")
+theme_override_font_sizes/font_size = 24
+text = "Return to Menu"
+
+[connection signal="pressed" from="MainMenu/VBoxContainer/ClassicMode" to="." method="ClassicButtonPressed"]
+[connection signal="pressed" from="MainMenu/VBoxContainer/SurvivalMode" to="." method="SurvivalButtonPressed"]
 [connection signal="pressed" from="MainMenu/VBoxContainer/QuitButton" to="." method="QuitButtonPressed"]
-[connection signal="pressed" from="ModeMenu/VBoxContainer/PlayerCPU" to="." method="PlayerCPUPressed"]
-[connection signal="pressed" from="ModeMenu/VBoxContainer/PlayerPlayer" to="." method="PlayerPlayerPressed"]
-[connection signal="pressed" from="ModeMenu/VBoxContainer/Return" to="." method="ReturnModeToMainPressed"]
+[connection signal="pressed" from="ClassicModeMenu/VBoxContainer/PlayerCPU" to="." method="PlayerCPUPressed"]
+[connection signal="pressed" from="ClassicModeMenu/VBoxContainer/PlayerPlayer" to="." method="PlayerPlayerPressed"]
+[connection signal="pressed" from="ClassicModeMenu/VBoxContainer/Return" to="." method="ReturnModeToMainPressed"]
+[connection signal="pressed" from="SurvivalModeMenu/VBoxContainer/Return" to="." method="ReturnSurvivalToMain"]

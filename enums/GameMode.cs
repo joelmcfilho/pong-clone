@@ -2,5 +2,6 @@
 public enum GameMode
 {
     Single,
-    Multi
+    Multi,
+    Survival
 }

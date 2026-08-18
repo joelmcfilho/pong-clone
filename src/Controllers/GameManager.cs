@@ -22,12 +22,12 @@ public partial class GameManager : Node
         //DEBUG -- Retirar na versão final
 		if (Input.IsKeyPressed(Key.K))
 		{
-			await EndGame(Side.Player);
+			_player1Score += 3;
 		}
 
 		if (Input.IsKeyPressed(Key.L))
 		{
-			await EndGame(Side.AI);
+			_player2Score += 3;
 		}
     }
 	
@@ -49,25 +49,37 @@ public partial class GameManager : Node
 
 		if(_player1Score == 3)
 		{
-			await EndGame(Side.Player);
+			await _hud.ShowWinner(Side.Player);
 			_playerPaddle.ResetPaddle(_playerPaddle._initialPosition);
 			_aiPaddle.ResetPaddle(_aiPaddle._initialPosAI);
+			ResetScore();
+			await _ball.ResetBall();
+			await _hud.Countdown();
+			_ball.StartBall();
 			return;
 		}
 		else if(_player2Score == 3)
 		{
 			if(gameModeSelect == GameMode.Multi)
 			{
-				await EndGame(Side.Player2);
+				await _hud.ShowWinner(Side.Player2);
 				_playerPaddle.ResetPaddle(_playerPaddle._initialPosition);
 				_aiPaddle.ResetPaddle(_aiPaddle._initialPosAI);
+				ResetScore();
+				await _ball.ResetBall();
+				await _hud.Countdown();
+				_ball.StartBall();
 				return;
 			}
 			else if(gameModeSelect == GameMode.Single)
 			{
-				await EndGame(Side.AI);
+				await _hud.ShowWinner(Side.AI);
 				_playerPaddle.ResetPaddle(_playerPaddle._initialPosition);
 				_aiPaddle.ResetPaddle(_aiPaddle._initialPosAI);
+				ResetScore();
+				await _ball.ResetBall();
+				await _hud.Countdown();
+				_ball.StartBall();
 				return;
 			}
 			
@@ -79,22 +91,27 @@ public partial class GameManager : Node
 		_playerPaddle.ResetPaddle(_playerPaddle._initialPosition);
 		_aiPaddle.ResetPaddle(_aiPaddle._initialPosAI);
 		await _ball.ResetBall();
+		await _hud.Countdown();
+		_ball.StartBall();
 
 	}
 
-	public async Task EndGame(Side side)
-	{
-		await _hud.ShowWinner(side);
+	// public async Task EndGame(Side side)
+	// {
 		
+	// 	// _playerPaddle.ResetPaddle(_playerPaddle._initialPosition);
+	// 	// _aiPaddle.ResetPaddle(_aiPaddle._initialPosAI);
+		
+	// 	await _hud.ShowWinner(side);
+
+	// 	// await _ball.ResetBall();		
+	// }
+
+	public void ResetScore()
+	{
 		_player1Score = 0;
 		_player2Score = 0;
-		_hud.UpdateScoreHUD(_player1Score,_player2Score);		
-
-		await _ball.ResetBall();
-		_playerPaddle.ResetPaddle(_playerPaddle._initialPosition);
-		_aiPaddle.ResetPaddle(_aiPaddle._initialPosAI);
-
-		
+		_hud.UpdateScoreHUD(_player1Score,_player2Score);	
 	}
 
 	public void InitializeGame(	
