@@ -10,16 +10,11 @@ public partial class BallBehavior : CharacterBody2D
 	private AnimatedSprite2D _sprite;
 	private GameMode _gameMode;
 
-	private Hud _hud;
-
 	public async override void _Ready()
 	{
-		_hud = GetNode<Hud>("../Hud");
 		_sprite = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
 
 		_spawnPosition = GlobalPosition;
-
-
 	}
 
 	public void StartBall()

@@ -193,4 +193,5 @@ text = "Return to Menu"
 [connection signal="pressed" from="ClassicModeMenu/VBoxContainer/PlayerCPU" to="." method="PlayerCPUPressed"]
 [connection signal="pressed" from="ClassicModeMenu/VBoxContainer/PlayerPlayer" to="." method="PlayerPlayerPressed"]
 [connection signal="pressed" from="ClassicModeMenu/VBoxContainer/Return" to="." method="ReturnModeToMainPressed"]
+[connection signal="pressed" from="SurvivalModeMenu/VBoxContainer/Start" to="." method="SurvivalStartButtonPressed"]
 [connection signal="pressed" from="SurvivalModeMenu/VBoxContainer/Return" to="." method="ReturnSurvivalToMain"]

@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://c2sit4vyctvdg"]
 
-[ext_resource type="Script" uid="uid://dcyjvb24ymd02" path="res://src/GUI/Hud.cs" id="1_4nilj"]
+[ext_resource type="Script" uid="uid://bj5u70tj3wn4h" path="res://src/GUI/HudSurvival.cs" id="1_4nilj"]
 [ext_resource type="FontFile" uid="uid://m2w2b5l8qtb5" path="res://assets/super_jello/Super Jello.ttf" id="2_vn57s"]
 
-[node name="Hud" type="Control" unique_id=750265900]
+[node name="Hud_Survival" type="Control" unique_id=750265900]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -15,9 +15,9 @@ script = ExtResource("1_4nilj")
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=855995144]
 layout_mode = 0
 offset_left = -2.0
-offset_top = -140.0
+offset_top = -168.0
 offset_right = 1168.0
-offset_bottom = 510.0
+offset_bottom = 482.0
 theme_override_constants/margin_bottom = 504
 
 [node name="Tophud" type="HBoxContainer" parent="MarginContainer" unique_id=1532059631]

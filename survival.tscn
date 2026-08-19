@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://2aflhdgy4npx"]
 
-[ext_resource type="Script" uid="uid://b0ev2axck8mbs" path="res://src/Controllers/InitGame.cs" id="1_6d2l4"]
+[ext_resource type="Script" uid="uid://ccy0atcxxjn23" path="res://src/Controllers/InitSurvival.cs" id="1_6d2l4"]
 [ext_resource type="Texture2D" uid="uid://cjkn0sqq58erw" path="res://assets/background_game.png" id="2_xbx4m"]
 [ext_resource type="PackedScene" uid="uid://c2sit4vyctvdg" path="res://hud_survival.tscn" id="3_b1jyj"]
 [ext_resource type="PackedScene" uid="uid://f45ifuns2lma" path="res://pause_menu.tscn" id="4_gn857"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://brjhi087vldkm" path="res://assets/NES - Tennis - Miscellaneous - General Sprites.png" id="6_cdm3r"]
 [ext_resource type="Script" uid="uid://gxy3wdojy0pe" path="res://src/AI/BallBehavior.cs" id="7_rwvoj"]
 [ext_resource type="Texture2D" uid="uid://cmtv0htwd52jd" path="res://assets/ball_sprite.png" id="8_qbdmv"]
+[ext_resource type="Texture2D" uid="uid://b56u2ghdxmpfj" path="res://assets/wall_squash_recorte.png" id="10_6d2l4"]
 [ext_resource type="Script" uid="uid://c27fottn3pwu7" path="res://src/Actors/GoalArea.cs" id="10_ac4mc"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mfdv2"]
@@ -107,7 +108,7 @@ size = Vector2(16.679264, 117.86794)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6d2l4"]
 size = Vector2(115.923645, 636.25806)
 
-[node name="Game" type="Node2D" unique_id=509795348]
+[node name="Survival" type="Node2D" unique_id=509795348]
 scale = Vector2(0.785, 0.785)
 script = ExtResource("1_6d2l4")
 
@@ -121,7 +122,7 @@ position = Vector2(606.3693, 249.68153)
 scale = Vector2(1.2816267, 1.2760901)
 texture = ExtResource("2_xbx4m")
 
-[node name="Hud" parent="." unique_id=750265900 instance=ExtResource("3_b1jyj")]
+[node name="Hud_Survival" parent="." unique_id=750265900 instance=ExtResource("3_b1jyj")]
 
 [node name="PauseMenu" parent="." unique_id=766707054 instance=ExtResource("4_gn857")]
 process_mode = 3
@@ -194,10 +195,13 @@ script = ExtResource("10_ac4mc")
 position = Vector2(1354.14, 268.7898)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RightWall" unique_id=1603512399]
-position = Vector2(-64.96814, 50.613037)
+position = Vector2(-22.929924, 52.2293)
 scale = Vector2(0.9999998, 0.9999998)
 shape = SubResource("RectangleShape2D_6d2l4")
 
 [node name="Sprite2D" type="Sprite2D" parent="RightWall" unique_id=385192907]
+position = Vector2(-36.942673, 76.43312)
+scale = Vector2(1, 0.5645628)
+texture = ExtResource("10_6d2l4")
 
 [connection signal="body_entered" from="PlayerGoal" to="GoalArea" method="PlayerGoalBodyEntered"]

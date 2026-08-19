@@ -10,26 +10,12 @@ public partial class GameManager : Node
 	private PlayerMovement _playerPaddle;
 	private AIBehavior _aiPaddle;
 	private Hud _hud;
+	private HudSurvival _hudSurvival;
 	private Commands _cmds;
 	private Side _side;
 	public bool isCountdownActive {get;set;}
 
 	public GameMode gameModeSelect;
-
-
-	public override async void _Process(double delta)
-    {
-        //DEBUG -- Retirar na versão final
-		if (Input.IsKeyPressed(Key.K))
-		{
-			_player1Score += 3;
-		}
-
-		if (Input.IsKeyPressed(Key.L))
-		{
-			_player2Score += 3;
-		}
-    }
 	
 	public async Task GoalScore(Side side)
 	{
@@ -96,17 +82,6 @@ public partial class GameManager : Node
 
 	}
 
-	// public async Task EndGame(Side side)
-	// {
-		
-	// 	// _playerPaddle.ResetPaddle(_playerPaddle._initialPosition);
-	// 	// _aiPaddle.ResetPaddle(_aiPaddle._initialPosAI);
-		
-	// 	await _hud.ShowWinner(side);
-
-	// 	// await _ball.ResetBall();		
-	// }
-
 	public void ResetScore()
 	{
 		_player1Score = 0;
@@ -124,6 +99,16 @@ public partial class GameManager : Node
 		_hud = hud;
 		_playerPaddle = Paddle;
 		_aiPaddle = player2Paddle;
+	}
+
+	public void InitializeSurvival(
+		BallBehavior ball,
+		PlayerMovement Paddle,
+		HudSurvival hud)
+	{
+		_ball = ball;
+		_playerPaddle = Paddle;
+		_hudSurvival = hud;
 	}
 
 

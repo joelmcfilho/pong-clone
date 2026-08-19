@@ -74,9 +74,12 @@ public partial class MainMenu : Control
     }
 
     //Survival Menu Interface
-    public void StartSurvivalButtonPressed()
+    public void SurvivalStartButtonPressed()
     {
         _gm.gameModeSelect = GameMode.Survival;
+        _survivalMenu.Visible = false;
+        _survivalMenuText.Visible = false;
+        GetTree().ChangeSceneToFile("res://survival.tscn");
     }
 
     public void HiScoreSurvivalButtonPressed()

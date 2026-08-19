@@ -23,7 +23,6 @@ public partial class Hud : Control
 		_countdownLabel.Visible = false;
 		_textLabel.Visible = false;
 
-		// NAO FUNCIONOU (TEM QUE VER ISSO AI)
 		if(_gm.gameModeSelect == GameMode.Single)
 		{
 			_player2Label.Text = "CPU";
