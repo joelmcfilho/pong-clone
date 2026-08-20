@@ -60,6 +60,9 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e2o6t"]
 size = Vector2(124.10347, 518.3145)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6d2l4"]
+size = Vector2(115.923645, 636.25806)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_7sc4i"]
 atlas = ExtResource("8_qbdmv")
 region = Rect2(0, 0, 41, 52)
@@ -105,9 +108,6 @@ size = Vector2(1473.9618, 38)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7jktm"]
 size = Vector2(16.679264, 117.86794)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_6d2l4"]
-size = Vector2(115.923645, 636.25806)
-
 [node name="Survival" type="Node2D" unique_id=509795348]
 scale = Vector2(0.785, 0.785)
 script = ExtResource("1_6d2l4")
@@ -147,6 +147,20 @@ animation = &"idle"
 position = Vector2(51.560497, 264.08914)
 scale = Vector2(0.34899998, 0.34899998)
 shape = SubResource("RectangleShape2D_e2o6t")
+
+[node name="RightWall" type="StaticBody2D" parent="." unique_id=1288570577]
+position = Vector2(1354.14, 268.7898)
+scale = Vector2(0.99999994, 0.99999994)
+
+[node name="Sprite2D" type="Sprite2D" parent="RightWall" unique_id=385192907]
+position = Vector2(-36.942673, 76.43312)
+scale = Vector2(1, 0.5645628)
+texture = ExtResource("10_6d2l4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RightWall" unique_id=1603512399]
+position = Vector2(2.5477753, 50.955414)
+scale = Vector2(0.9999998, 0.9999998)
+shape = SubResource("RectangleShape2D_6d2l4")
 
 [node name="Ball" type="CharacterBody2D" parent="." unique_id=805588895]
 position = Vector2(-1, -1)
@@ -190,18 +204,5 @@ shape = SubResource("RectangleShape2D_7jktm")
 [node name="GoalArea" type="Area2D" parent="." unique_id=1170019583]
 position = Vector2(-185, 168)
 script = ExtResource("10_ac4mc")
-
-[node name="RightWall" type="StaticBody2D" parent="." unique_id=1288570577]
-position = Vector2(1354.14, 268.7898)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="RightWall" unique_id=1603512399]
-position = Vector2(-22.929924, 52.2293)
-scale = Vector2(0.9999998, 0.9999998)
-shape = SubResource("RectangleShape2D_6d2l4")
-
-[node name="Sprite2D" type="Sprite2D" parent="RightWall" unique_id=385192907]
-position = Vector2(-36.942673, 76.43312)
-scale = Vector2(1, 0.5645628)
-texture = ExtResource("10_6d2l4")
 
 [connection signal="body_entered" from="PlayerGoal" to="GoalArea" method="PlayerGoalBodyEntered"]

@@ -32,6 +32,10 @@ public partial class Hud : Control
 		{
 			_player2Label.Text = "Player 2";
 		}
+		else
+		{
+			_player2Label.Text = null;
+		}
 	}
 
 

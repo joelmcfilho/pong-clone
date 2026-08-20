@@ -13,6 +13,8 @@ public partial class PlayerMovement : Paddle
 		base._Ready();
 		_gm = GetNode<GameManager>("/root/GameManager");
         _initialPosition = GlobalPosition;
+
+		GD.Print("Inicializou");
     }
 
 
@@ -26,6 +28,7 @@ public partial class PlayerMovement : Paddle
 		else
 		{
 			float direction = Input.GetAxis("ui_up","ui_down");
+			
 			AnimationControl(direction);
 
 			MoveAndSlide();

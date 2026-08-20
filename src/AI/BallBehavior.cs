@@ -41,7 +41,7 @@ public partial class BallBehavior : CharacterBody2D
 
 	private void HandleCollisions(KinematicCollision2D collision)
 	{
-		if(_gameMode == GameMode.Single || _gameMode == GameMode.Multi)
+		if(_gameMode != GameMode.Survival)
 		{
 			if(collision.GetCollider() is Paddle paddle)
 			{
@@ -56,7 +56,7 @@ public partial class BallBehavior : CharacterBody2D
 		}
 		else
 		{
-			
+			_direction = _direction.Bounce(collision.GetNormal());
 		}
 
 		

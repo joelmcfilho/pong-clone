@@ -8,15 +8,20 @@ public partial class InitSurvival : Node2D
 
 	private GameManager _gm;
 
-	public override void _Ready()
+	public override async void _Ready()
 	{
 		_hudSurvival = GetNode<HudSurvival>("Hud_Survival");
-		_paddle = GetNode<PlayerMovement>("/root/Game/PlayerBar");
-		_ball = GetNode<BallBehavior>("/root/Game/Ball");
+		_paddle = GetNode<PlayerMovement>("PlayerBar");
+		_ball = GetNode<BallBehavior>("Ball");
 
 		_gm = GetNode<GameManager>("/root/GameManager");
 
 		_gm.InitializeSurvival(_ball,_paddle,_hudSurvival);
+
+		await _hudSurvival.Countdown();
+
+		_ball.StartBall();
+		_ball.BallAnimationControl();
 	}
 
 
