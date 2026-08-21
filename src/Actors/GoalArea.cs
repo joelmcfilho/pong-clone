@@ -20,5 +20,10 @@ public partial class GoalArea : Area2D
 		await gameManager.GoalScore(Side.Player);
 	}
 
+	private async void SurvivalGoalBodyEntered(Node2D ball)
+	{
+		gameManager.SurvivalEndGame();
+	}
+
 
 }

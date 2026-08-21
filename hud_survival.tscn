@@ -96,3 +96,8 @@ theme_override_fonts/font = ExtResource("2_vn57s")
 theme_override_font_sizes/font_size = 156
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Marker" type="Label" parent="MarginContainer3" unique_id=410469773]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_vn57s")
+theme_override_font_sizes/font_size = 148

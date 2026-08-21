@@ -8,6 +8,8 @@ public partial class InitSurvival : Node2D
 
 	private GameManager _gm;
 
+	private double time = 0.0f;
+
 	public override async void _Ready()
 	{
 		_hudSurvival = GetNode<HudSurvival>("Hud_Survival");
@@ -27,5 +29,8 @@ public partial class InitSurvival : Node2D
 
 	public override void _Process(double delta)
 	{
+		time += delta;
+		GD.Print(time);
 	}
+
 }

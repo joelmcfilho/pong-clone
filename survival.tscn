@@ -193,11 +193,11 @@ position = Vector2(585.8662, 7.000002)
 scale = Vector2(0.99999994, 0.99999994)
 shape = SubResource("RectangleShape2D_fc0e3")
 
-[node name="PlayerGoal" type="Area2D" parent="." unique_id=1641965965]
+[node name="GoalSurvival" type="Area2D" parent="." unique_id=1641965965]
 position = Vector2(16, -0.9999995)
 scale = Vector2(5.365, 5.365)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerGoal" unique_id=849640531]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GoalSurvival" unique_id=849640531]
 position = Vector2(-33.612537, 59.832695)
 shape = SubResource("RectangleShape2D_7jktm")
 
@@ -205,4 +205,4 @@ shape = SubResource("RectangleShape2D_7jktm")
 position = Vector2(-185, 168)
 script = ExtResource("10_ac4mc")
 
-[connection signal="body_entered" from="PlayerGoal" to="GoalArea" method="PlayerGoalBodyEntered"]
+[connection signal="body_entered" from="GoalSurvival" to="GoalArea" method="SurvivalGoalBodyEntered"]

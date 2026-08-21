@@ -82,6 +82,12 @@ public partial class GameManager : Node
 
 	}
 
+	public void SurvivalEndGame()
+	{
+		
+		_hudSurvival.ShowSurvivalEndGameText();
+	}
+
 	public void ResetScore()
 	{
 		_player1Score = 0;

@@ -8,6 +8,7 @@ public partial class HudSurvival : Control
 	private Label _ballCounter;
 	private Label _countdownLabel;
 	private Label _textLabel;
+	private Label _marker;
 
 	private GameManager _gm;
 	public override void _Ready()
@@ -16,14 +17,17 @@ public partial class HudSurvival : Control
 		_ballCounter = GetNode<Label>("MarginContainer/Tophud/BallCounter");
 		_countdownLabel = GetNode<Label>("MarginContainer2/CountdownLabel");
 		_textLabel = GetNode<Label>("MarginContainer3/TextLabel");
+		_marker = GetNode<Label>("MarginContainer3/Marker");
 
 		_gm = GetNode<GameManager>("/root/GameManager");
 
 		_countdownLabel.Visible = false;
 		_textLabel.Visible = false;
+		_marker.Visible = false;
 
 
 	}
+
 
 	public async Task Countdown()
 	{
@@ -63,5 +67,21 @@ public partial class HudSurvival : Control
 	public void HideCountdownLabel()
 	{
 		_countdownLabel.Visible = false;
+	}
+
+	public void ShowSurvivalEndGameText()
+	{
+		ToSignal(GetTree().CreateTimer(1.5),SceneTreeTimer.SignalName.Timeout);
+
+		_textLabel.Visible = true;
+		_marker.Visible = true;
+
+		_textLabel.Text = "Fim de Jogo!";
+		//_marker.Text = markerText;
+	}
+
+	public void UpdateSurvivalTimer(String time)
+	{
+		
 	}
 }
