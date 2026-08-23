@@ -12,42 +12,57 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_4nilj")
 
-[node name="MarginContainer" type="MarginContainer" parent="." unique_id=855995144]
+[node name="MarginContainerTimer" type="MarginContainer" parent="." unique_id=855995144]
 layout_mode = 0
 offset_left = -2.0
 offset_top = -168.0
-offset_right = 1168.0
-offset_bottom = 482.0
+offset_right = 609.0
+offset_bottom = 494.0
 theme_override_constants/margin_bottom = 504
 
-[node name="Tophud" type="HBoxContainer" parent="MarginContainer" unique_id=1532059631]
+[node name="Tophud" type="HBoxContainer" parent="MarginContainerTimer" unique_id=1532059631]
 layout_mode = 2
 theme_override_constants/separation = 20
-alignment = 1
 
-[node name="Time" type="Label" parent="MarginContainer/Tophud" unique_id=2054376568]
+[node name="Time" type="Label" parent="MarginContainerTimer/Tophud" unique_id=2054376568]
 layout_mode = 2
-size_flags_horizontal = 3
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 0)
 theme_override_fonts/font = ExtResource("2_vn57s")
 theme_override_font_sizes/font_size = 56
 text = "Time:"
 
-[node name="TimeCounter" type="Label" parent="MarginContainer/Tophud" unique_id=601583215]
-layout_mode = 2
-theme_override_font_sizes/font_size = 62
-
-[node name="Balls" type="Label" parent="MarginContainer/Tophud" unique_id=1894033711]
+[node name="TimeCounter" type="Label" parent="MarginContainerTimer/Tophud" unique_id=601583215]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("2_vn57s")
 theme_override_font_sizes/font_size = 56
-text = "Balls:"
+text = "0.0"
 
-[node name="BallCounter" type="Label" parent="MarginContainer/Tophud" unique_id=289222013]
+[node name="MarginContainerBalls" type="MarginContainer" parent="." unique_id=1641467758]
+layout_mode = 0
+offset_left = 662.0
+offset_top = -168.0
+offset_right = 1153.0
+offset_bottom = -5.0
+
+[node name="Tophud" type="HBoxContainer" parent="MarginContainerBalls" unique_id=1611986860]
 layout_mode = 2
-theme_override_font_sizes/font_size = 50
+alignment = 2
+
+[node name="Balls" type="Label" parent="MarginContainerBalls/Tophud" unique_id=1894033711]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_vn57s")
+theme_override_font_sizes/font_size = 56
+text = "Balls: "
+
+[node name="BallCounter" type="Label" parent="MarginContainerBalls/Tophud" unique_id=289222013]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_vn57s")
+theme_override_font_sizes/font_size = 56
+text = "1"
 
 [node name="MarginContainer2" type="MarginContainer" parent="." unique_id=1770439528]
 layout_mode = 1
@@ -86,7 +101,10 @@ offset_bottom = 106.5
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="TextLabel" type="Label" parent="MarginContainer3" unique_id=1716535339]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer3" unique_id=1719470535]
+layout_mode = 2
+
+[node name="TextLabel" type="Label" parent="MarginContainer3/VBoxContainer" unique_id=1716535339]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 0)
@@ -97,7 +115,7 @@ theme_override_font_sizes/font_size = 156
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Marker" type="Label" parent="MarginContainer3" unique_id=410469773]
+[node name="Marker" type="Label" parent="MarginContainer3/VBoxContainer" unique_id=410469773]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_vn57s")
 theme_override_font_sizes/font_size = 148

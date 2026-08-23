@@ -84,7 +84,6 @@ public partial class GameManager : Node
 
 	public void SurvivalEndGame()
 	{
-		
 		_hudSurvival.ShowSurvivalEndGameText();
 	}
 

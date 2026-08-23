@@ -8,7 +8,8 @@ public partial class InitSurvival : Node2D
 
 	private GameManager _gm;
 
-	private double time = 0.0f;
+	private double _time = 0.0f;
+	private bool _survivalStart = false;
 
 	public override async void _Ready()
 	{
@@ -24,13 +25,22 @@ public partial class InitSurvival : Node2D
 
 		_ball.StartBall();
 		_ball.BallAnimationControl();
+		_survivalStart = true;
 	}
 
 
 	public override void _Process(double delta)
 	{
-		time += delta;
-		GD.Print(time);
+		if(_survivalStart == true)
+		{
+			double timeUpdated = CountTime(delta);
+			_hudSurvival.UpdateSurvivalTimer(timeUpdated);
+		}
+	}
+
+	public double CountTime(double delta)
+	{		
+		return _time += delta;
 	}
 
 }
