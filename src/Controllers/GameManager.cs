@@ -1,4 +1,5 @@
 using Godot;
+using System;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 
@@ -6,16 +7,32 @@ public partial class GameManager : Node
 {
 	private int _player1Score = 0;
 	private int _player2Score = 0;
+	private double _time = 0.0f;
+	public double saveTime = 0.0f;
+
 	private BallBehavior _ball;
 	private PlayerMovement _playerPaddle;
 	private AIBehavior _aiPaddle;
 	private Hud _hud;
 	private HudSurvival _hudSurvival;
-	private Commands _cmds;
 	private Side _side;
+	private InitSurvival _initSurvival;
 	public bool isCountdownActive {get;set;}
 
 	public GameMode gameModeSelect;
+
+    public override void _Process(double delta)
+    {
+		if (gameModeSelect != GameMode.Survival ||
+			_initSurvival == null ||
+			!_initSurvival.survivalStart)
+        	return;
+
+		_hudSurvival.UpdateSurvivalTimer(_time += delta);
+		RegisterTime(_time);
+        
+    }
+
 	
 	public async Task GoalScore(Side side)
 	{
@@ -84,7 +101,8 @@ public partial class GameManager : Node
 
 	public void SurvivalEndGame()
 	{
-		_hudSurvival.ShowSurvivalEndGameText();
+		_initSurvival.survivalStart = false;
+		_hudSurvival.ShowSurvivalEndGameText(_time);
 	}
 
 	public void ResetScore()
@@ -107,13 +125,29 @@ public partial class GameManager : Node
 	}
 
 	public void InitializeSurvival(
+		InitSurvival initSurvival,
 		BallBehavior ball,
 		PlayerMovement Paddle,
 		HudSurvival hud)
 	{
+		_initSurvival = initSurvival;
 		_ball = ball;
 		_playerPaddle = Paddle;
 		_hudSurvival = hud;
+	}
+
+	public double CountTime(double delta)
+	{
+		_time += delta;
+
+		return _time;
+	}
+
+	public string RegisterTime(double time)
+	{
+		String timeText = time.ToString("F1");
+
+		return timeText;
 	}
 
 

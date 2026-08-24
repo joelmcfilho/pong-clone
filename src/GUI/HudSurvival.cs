@@ -9,21 +9,24 @@ public partial class HudSurvival : Control
 	private Label _countdownLabel;
 	private Label _textLabel;
 	private Label _marker;
+	private MarginContainer _endGameButtonBox;
 
 	private GameManager _gm;
 	public override void _Ready()
 	{
 		_timeCounter = GetNode<Label>("MarginContainerTimer/Tophud/TimeCounter");
 		_ballCounter = GetNode<Label>("MarginContainerBalls/Tophud/BallCounter");
-		_countdownLabel = GetNode<Label>("MarginContainer2/CountdownLabel");
-		_textLabel = GetNode<Label>("MarginContainer3/TextLabel");
-		_marker = GetNode<Label>("MarginContainer3/Marker");
+		_countdownLabel = GetNode<Label>("MarginContainerCountdown/CountdownLabel");
+		_textLabel = GetNode<Label>("MarginContainerEndGame/VBoxContainer/TextLabel");
+		_marker = GetNode<Label>("MarginContainerEndGame/VBoxContainer/Marker");
+		_endGameButtonBox = GetNode<MarginContainer>("MarginContainerEndButtons");
 
 		_gm = GetNode<GameManager>("/root/GameManager");
 
 		_countdownLabel.Visible = false;
 		_textLabel.Visible = false;
 		_marker.Visible = false;
+		_endGameButtonBox.Visible = false;
 
 
 	}
@@ -69,16 +72,17 @@ public partial class HudSurvival : Control
 		_countdownLabel.Visible = false;
 	}
 
-	public void ShowSurvivalEndGameText()
+	public void ShowSurvivalEndGameText(double time)
 	{
 		ToSignal(GetTree().CreateTimer(1.5),SceneTreeTimer.SignalName.Timeout);
 
 		_textLabel.Visible = true;
 		_marker.Visible = true;
+		_endGameButtonBox.Visible = true;
 
 		GetTree().Paused = true;
 		_textLabel.Text = "Game Over!";
-		_marker.Text = $"Your time is {null} seconds!";
+		_marker.Text = $"Your time is {_gm.RegisterTime(time)} seconds!";
 	}
 
 	public void UpdateSurvivalTimer(double time)

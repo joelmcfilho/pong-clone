@@ -7,9 +7,7 @@ public partial class InitSurvival : Node2D
 	private BallBehavior _ball;
 
 	private GameManager _gm;
-
-	private double _time = 0.0f;
-	private bool _survivalStart = false;
+	public bool survivalStart = false;
 
 	public override async void _Ready()
 	{
@@ -19,28 +17,13 @@ public partial class InitSurvival : Node2D
 
 		_gm = GetNode<GameManager>("/root/GameManager");
 
-		_gm.InitializeSurvival(_ball,_paddle,_hudSurvival);
+		_gm.InitializeSurvival(this,_ball,_paddle,_hudSurvival);
 
 		await _hudSurvival.Countdown();
 
 		_ball.StartBall();
 		_ball.BallAnimationControl();
-		_survivalStart = true;
-	}
-
-
-	public override void _Process(double delta)
-	{
-		if(_survivalStart == true)
-		{
-			double timeUpdated = CountTime(delta);
-			_hudSurvival.UpdateSurvivalTimer(timeUpdated);
-		}
-	}
-
-	public double CountTime(double delta)
-	{		
-		return _time += delta;
+		survivalStart = true;
 	}
 
 }
