@@ -125,11 +125,6 @@ texture = ExtResource("2_xbx4m")
 [node name="Hud_Survival" parent="." unique_id=750265900 instance=ExtResource("3_b1jyj")]
 
 [node name="PauseMenu" parent="." unique_id=766707054 instance=ExtResource("4_gn857")]
-process_mode = 3
-offset_left = -34.999996
-offset_top = 33.999996
-offset_right = -34.999996
-offset_bottom = 33.999996
 
 [node name="PlayerBar" type="CharacterBody2D" parent="." unique_id=2066055655]
 position = Vector2(-35, 34)

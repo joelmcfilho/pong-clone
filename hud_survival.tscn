@@ -123,6 +123,7 @@ theme_override_fonts/font = ExtResource("2_vn57s")
 theme_override_font_sizes/font_size = 105
 
 [node name="MarginContainerEndButtons" type="MarginContainer" parent="." unique_id=1219517777]
+process_mode = 3
 layout_mode = 0
 offset_left = 497.0
 offset_top = 408.0
@@ -145,3 +146,6 @@ layout_mode = 2
 theme_override_fonts/font = ExtResource("2_vn57s")
 theme_override_font_sizes/font_size = 25
 text = "Quit to Menu"
+
+[connection signal="pressed" from="MarginContainerEndButtons/VBoxContainer/Restart" to="." method="RestartPressed"]
+[connection signal="pressed" from="MarginContainerEndButtons/VBoxContainer/Quit" to="." method="QuitSurvivalPressed"]

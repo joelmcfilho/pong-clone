@@ -7,10 +7,20 @@ public partial class PauseMenu : Control
 	private GameManager _gm;
 	private CenterContainer _mainMenu;
 	private CenterContainer _modeMenu;
+	private InitSurvival _initSurvival;
+	private GameMode _gameMode;
 	
 	public override void _Ready()
 	{
 		_gm = GetNode<GameManager>("/root/GameManager");
+		// if(_gameMode == GameMode.Survival)
+		// {
+			_initSurvival = GetParent<InitSurvival>();
+		// }
+		GD.Print($"PauseMenu: {GetPath()}");
+    	GD.Print($"Parent: {GetParent().GetPath()}");
+    	GD.Print($"InitSurvival: {_initSurvival}");
+		
 
 		Visible = false;
 	}
@@ -18,10 +28,10 @@ public partial class PauseMenu : Control
 	
 	public override void _Process(double delta)
 	{
-		if(_gm.isCountdownActive == true)
-		{
-			return;
-		}
+		if(_gm.isCountdownActive == true) return;
+
+		if(_initSurvival.survivalStart == false) return;
+
 		if(Input.IsActionJustPressed("ui_cancel") && _paused == false)
 		{
 			ShowPause();

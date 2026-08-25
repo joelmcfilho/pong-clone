@@ -89,4 +89,38 @@ public partial class HudSurvival : Control
 	{
 		_timeCounter.Text = $"{time.ToString("F1")} sec";
 	}
+
+	public void RestartPressed()
+	{
+		double time = 0.0f;
+		_timeCounter.Text = $"{time.ToString("F1")} sec";
+
+		//ZERAR CONTADOR DE BOLA AQUI
+		//ELIMINAR TODAS AS INSTÂNCIAS DE BOLA E DEIXAR SÓ UMA
+
+		_textLabel.Visible = false;
+		_marker.Visible = false;
+		_endGameButtonBox.Visible = false;
+
+		GetTree().Paused = false;
+		GetTree().ChangeSceneToFile("res://survival.tscn");
+
+	}
+
+	public void QuitSurvivalPressed()
+	{
+		double time = 0.0f;
+		_timeCounter.Text = $"{time.ToString("F1")} sec";
+
+		//ZERAR CONTADOR DE BOLA AQUI
+		//ELIMINAR TODAS AS INSTÂNCIAS DE BOLA E DEIXAR SÓ UMA
+
+		_textLabel.Visible = false;
+		_marker.Visible = false;
+		_endGameButtonBox.Visible = false;
+
+		GetTree().Paused = false;
+		GetTree().ChangeSceneToFile("res://MainMenu.tscn");
+
+	}
 }
