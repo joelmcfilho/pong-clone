@@ -17,9 +17,21 @@ public partial class GameManager : Node
 	private HudSurvival _hudSurvival;
 	private Side _side;
 	private InitSurvival _initSurvival;
+	private Save _save;
 	public bool isCountdownActive {get;set;}
 
 	public GameMode gameModeSelect;
+
+    public override void _Ready()
+    {
+		_save = new Save();
+
+		saveTime = _save.LoadTimeRecord();
+		GD.Print($"DEBUG RECORD: {saveTime}");
+
+        
+    }
+
 
     public override void _Process(double delta)
     {
@@ -103,6 +115,7 @@ public partial class GameManager : Node
 	{
 		_initSurvival.survivalStart = false;
 		_hudSurvival.ShowSurvivalEndGameText(_time);
+		_save.CheckRecord(_time,saveTime);
 	}
 
 	public void ResetScore()
