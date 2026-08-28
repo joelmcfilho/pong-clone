@@ -3,5 +3,7 @@ public enum GameMode
 {
     Single,
     Multi,
-    Survival
+    Survival,
+    None
+    
 }

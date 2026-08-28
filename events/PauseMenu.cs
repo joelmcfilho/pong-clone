@@ -13,16 +13,10 @@ public partial class PauseMenu : Control
 	public override void _Ready()
 	{
 		_gm = GetNode<GameManager>("/root/GameManager");
-		// if(_gameMode == GameMode.Survival)
-		// {
-			_initSurvival = GetParent<InitSurvival>();
-		// }
-		GD.Print($"PauseMenu: {GetPath()}");
-    	GD.Print($"Parent: {GetParent().GetPath()}");
-    	GD.Print($"InitSurvival: {_initSurvival}");
 		
 
 		Visible = false;
+		ProcessMode = ProcessModeEnum.Always;
 	}
 
 	
@@ -30,7 +24,7 @@ public partial class PauseMenu : Control
 	{
 		if(_gm.isCountdownActive == true) return;
 
-		if(_initSurvival.survivalStart == false) return;
+		if(_gm.survivalStartPublic == false) return;
 
 		if(Input.IsActionJustPressed("ui_cancel") && _paused == false)
 		{
@@ -60,9 +54,13 @@ public partial class PauseMenu : Control
 
     public void QuitButton()
     {
-		_paused = false;
-		GetTree().Paused = false;
-		GetTree().ChangeSceneToFile("res://MainMenu.tscn");
+			_gameMode = GameMode.None;			
+			_paused = false;
+			GetTree().Paused = false;
+			_gm.ClearSurvival();
+			GetTree().ChangeSceneToFile("res://MainMenu.tscn");
+		
+		
         
     }
 }

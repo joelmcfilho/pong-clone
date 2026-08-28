@@ -12,6 +12,7 @@ public partial class HudSurvival : Control
 	private MarginContainer _endGameButtonBox;
 
 	private GameManager _gm;
+	private GameMode _gameMode;
 	public override void _Ready()
 	{
 		_timeCounter = GetNode<Label>("MarginContainerTimer/Tophud/TimeCounter");
@@ -22,6 +23,7 @@ public partial class HudSurvival : Control
 		_endGameButtonBox = GetNode<MarginContainer>("MarginContainerEndButtons");
 
 		_gm = GetNode<GameManager>("/root/GameManager");
+		_gameMode = new GameMode();
 
 		_countdownLabel.Visible = false;
 		_textLabel.Visible = false;
@@ -94,6 +96,7 @@ public partial class HudSurvival : Control
 	{
 		double time = 0.0f;
 		_timeCounter.Text = $"{time.ToString("F1")} sec";
+		_gm.KillTimeCount();
 
 		//ZERAR CONTADOR DE BOLA AQUI
 		//ELIMINAR TODAS AS INSTÂNCIAS DE BOLA E DEIXAR SÓ UMA
@@ -119,6 +122,9 @@ public partial class HudSurvival : Control
 		_marker.Visible = false;
 		_endGameButtonBox.Visible = false;
 
+		_gm.KillTimeCount();
+		_gm.ClearSurvival();
+		_gameMode = GameMode.None;
 		GetTree().Paused = false;
 		GetTree().ChangeSceneToFile("res://MainMenu.tscn");
 

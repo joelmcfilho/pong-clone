@@ -122,10 +122,6 @@ position = Vector2(606.3693, 249.68153)
 scale = Vector2(1.2816267, 1.2760901)
 texture = ExtResource("2_xbx4m")
 
-[node name="Hud_Survival" parent="." unique_id=750265900 instance=ExtResource("3_b1jyj")]
-
-[node name="PauseMenu" parent="." unique_id=766707054 instance=ExtResource("4_gn857")]
-
 [node name="PlayerBar" type="CharacterBody2D" parent="." unique_id=2066055655]
 position = Vector2(-35, 34)
 motion_mode = 1
@@ -199,5 +195,9 @@ shape = SubResource("RectangleShape2D_7jktm")
 [node name="GoalArea" type="Area2D" parent="." unique_id=1170019583]
 position = Vector2(-185, 168)
 script = ExtResource("10_ac4mc")
+
+[node name="Hud_Survival" parent="." unique_id=750265900 instance=ExtResource("3_b1jyj")]
+
+[node name="PauseMenu" parent="." unique_id=766707054 instance=ExtResource("4_gn857")]
 
 [connection signal="body_entered" from="GoalSurvival" to="GoalArea" method="SurvivalGoalBodyEntered"]

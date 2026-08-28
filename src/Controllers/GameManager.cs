@@ -9,6 +9,7 @@ public partial class GameManager : Node
 	private int _player2Score = 0;
 	private double _time = 0.0f;
 	public double saveTime = 0.0f;
+	public bool survivalStartPublic = false;
 
 	private BallBehavior _ball;
 	private PlayerMovement _playerPaddle;
@@ -27,7 +28,8 @@ public partial class GameManager : Node
 		_save = new Save();
 
 		saveTime = _save.LoadTimeRecord();
-		GD.Print($"DEBUG RECORD: {saveTime}");
+
+		gameModeSelect = new GameMode();
 
         
     }
@@ -35,13 +37,34 @@ public partial class GameManager : Node
 
     public override void _Process(double delta)
     {
-		if (gameModeSelect != GameMode.Survival ||
-			_initSurvival == null ||
-			!_initSurvival.survivalStart)
-        	return;
+		if (gameModeSelect != GameMode.Survival)
+        return;
+
+    	if (_initSurvival == null ||
+        !GodotObject.IsInstanceValid(_initSurvival))
+        return;
+
+    	if (!_initSurvival.survivalStart)
+        return;
+
+    	if (_hudSurvival == null ||
+        !GodotObject.IsInstanceValid(_hudSurvival))
+        return;
 
 		_hudSurvival.UpdateSurvivalTimer(_time += delta);
 		RegisterTime(_time);
+
+		if(_initSurvival.survivalStart == false)
+		{
+			KillTimeCount();
+		}		
+
+		if(_initSurvival.survivalStart == true)
+		{
+			survivalStartPublic = true;
+		}
+
+		
         
     }
 
@@ -161,6 +184,23 @@ public partial class GameManager : Node
 		String timeText = time.ToString("F1");
 
 		return timeText;
+	}
+
+	//REVISAR NO FIM DA ETAPA
+	public void KillTimeCount()
+	{
+		RegisterTime(0.0f);
+		_time = 0.0f;
+	}
+
+	public void ClearSurvival()
+	{
+    _initSurvival = null;
+    _hudSurvival = null;
+    _ball = null;
+    _playerPaddle = null;
+
+    _time = 0.0;
 	}
 
 

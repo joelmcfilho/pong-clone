@@ -159,13 +159,6 @@ offset_top = -33.121017
 offset_right = 1.2738851
 offset_bottom = -33.121017
 
-[node name="PauseMenu" parent="." unique_id=766707054 instance=ExtResource("9_vef74")]
-process_mode = 3
-offset_left = -34.999996
-offset_top = 33.999996
-offset_right = -34.999996
-offset_bottom = 33.999996
-
 [node name="PlayerBar" type="CharacterBody2D" parent="." unique_id=2066055655]
 position = Vector2(-35, 34)
 motion_mode = 1
@@ -251,6 +244,13 @@ shape = SubResource("RectangleShape2D_ryrav")
 [node name="GoalArea" type="Area2D" parent="." unique_id=1170019583]
 position = Vector2(-185, 168)
 script = ExtResource("6_ryrav")
+
+[node name="PauseMenu" parent="." unique_id=766707054 instance=ExtResource("9_vef74")]
+process_mode = 3
+offset_left = -34.999996
+offset_top = 33.999996
+offset_right = -34.999996
+offset_bottom = 33.999996
 
 [connection signal="body_entered" from="PlayerGoal" to="GoalArea" method="PlayerGoalBodyEntered"]
 [connection signal="body_entered" from="AIGoal" to="GoalArea" method="AIGoalBodyEntered"]
