@@ -217,8 +217,10 @@ public partial class GameManager : Node
 		timer.Start();
 	}
 
-	public void SpawnBall()
+	public async void SpawnBall()
 	{
+		await _hudSurvival.BallHeadsupCountdown();
+
 		PackedScene ballInstance = GD.Load<PackedScene>("res://ball.tscn");
 
 		BallBehavior extraBall = ballInstance.Instantiate<BallBehavior>();

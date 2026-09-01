@@ -9,7 +9,10 @@ public partial class HudSurvival : Control
 	private Label _countdownLabel;
 	private Label _textLabel;
 	private Label _marker;
+	private Label _headsupCountdown;
 	private MarginContainer _endGameButtonBox;
+	private MarginContainer _ballHeadsup;
+
 
 	private GameManager _gm;
 	private GameMode _gameMode;
@@ -21,6 +24,8 @@ public partial class HudSurvival : Control
 		_textLabel = GetNode<Label>("MarginContainerEndGame/VBoxContainer/TextLabel");
 		_marker = GetNode<Label>("MarginContainerEndGame/VBoxContainer/Marker");
 		_endGameButtonBox = GetNode<MarginContainer>("MarginContainerEndButtons");
+		_ballHeadsup = GetNode<MarginContainer>("MarginContainerBallHeadsup");
+		_headsupCountdown = GetNode<Label>("MarginContainerBallHeadsup/VBoxContainer/HeadsupCount");
 
 		_gm = GetNode<GameManager>("/root/GameManager");
 		_gameMode = new GameMode();
@@ -29,6 +34,7 @@ public partial class HudSurvival : Control
 		_textLabel.Visible = false;
 		_marker.Visible = false;
 		_endGameButtonBox.Visible = false;
+		_ballHeadsup.Visible = false;
 
 
 	}
@@ -63,11 +69,35 @@ public partial class HudSurvival : Control
 
 	}
 
+	public async Task BallHeadsupCountdown()
+	{
+		_ballHeadsup.Visible = true;
+
+		_headsupCountdown.Text = "3";
+
+		await ToSignal(GetTree().CreateTimer(1), 
+		SceneTreeTimer.SignalName.Timeout);
+
+		_headsupCountdown.Text = "2";
+
+		await ToSignal(GetTree().CreateTimer(1), 
+		SceneTreeTimer.SignalName.Timeout);
+
+		_headsupCountdown.Text = "1";
+
+		await ToSignal(GetTree().CreateTimer(1), 
+		SceneTreeTimer.SignalName.Timeout);
+
+		_ballHeadsup.Visible = false;
+
+	}
+
 	public void ShowCountdownLabel(String text)
 	{
 		_countdownLabel.Text = text;
 		_countdownLabel.Visible = true;
 	}
+
 
 	public void HideCountdownLabel()
 	{
@@ -120,9 +150,6 @@ public partial class HudSurvival : Control
 	{
 		double time = 0.0f;
 		_timeCounter.Text = $"{time.ToString("F1")} sec";
-
-		//ZERAR CONTADOR DE BOLA AQUI
-		//ELIMINAR TODAS AS INSTÂNCIAS DE BOLA E DEIXAR SÓ UMA
 
 		_textLabel.Visible = false;
 		_marker.Visible = false;
