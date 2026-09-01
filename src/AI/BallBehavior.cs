@@ -25,6 +25,8 @@ public partial class BallBehavior : CharacterBody2D
 		float y = rng.RandfRange(-0.5f,0.5f);
 
 		_direction = new Vector2(x,y).Normalized();
+
+		BallAnimationControl();
 	}
 
 	public override void _PhysicsProcess(double delta)

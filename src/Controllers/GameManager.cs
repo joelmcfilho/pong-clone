@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 
@@ -10,6 +11,7 @@ public partial class GameManager : Node
 	private double _time = 0.0f;
 	public double saveTime = 0.0f;
 	public bool survivalStartPublic = false;
+	public int ballCount = 1;
 
 	private BallBehavior _ball;
 	private PlayerMovement _playerPaddle;
@@ -19,6 +21,7 @@ public partial class GameManager : Node
 	private Side _side;
 	private InitSurvival _initSurvival;
 	private Save _save;
+	private List<BallBehavior> _ballContainer = new List<BallBehavior>();
 	public bool isCountdownActive {get;set;}
 
 	public GameMode gameModeSelect;
@@ -53,6 +56,7 @@ public partial class GameManager : Node
 
 		_hudSurvival.UpdateSurvivalTimer(_time += delta);
 		RegisterTime(_time);
+		_hudSurvival.UpdateSurvivalBallCounter(ballCount);
 
 		if(_initSurvival.survivalStart == false)
 		{
@@ -148,6 +152,7 @@ public partial class GameManager : Node
 		_hud.UpdateScoreHUD(_player1Score,_player2Score);	
 	}
 
+	//INITIALIZATION METHOD FOR CLASSIC GAME
 	public void InitializeGame(	
 		BallBehavior ball,
 		PlayerMovement Paddle,
@@ -160,11 +165,13 @@ public partial class GameManager : Node
 		_aiPaddle = player2Paddle;
 	}
 
+		//INITIALIZATION METHOD FOR SURVIVAL GAME
 	public void InitializeSurvival(
 		InitSurvival initSurvival,
 		BallBehavior ball,
 		PlayerMovement Paddle,
-		HudSurvival hud)
+		HudSurvival hud
+		)
 	{
 		_initSurvival = initSurvival;
 		_ball = ball;
@@ -202,6 +209,43 @@ public partial class GameManager : Node
 
     _time = 0.0;
 	}
+
+	//Survival Mode ball instantiation
+	public void BallSpawnTimerControl(Timer timer)
+	{
+		timer.Timeout += SpawnBall;
+		timer.Start();
+	}
+
+	public void SpawnBall()
+	{
+		PackedScene ballInstance = GD.Load<PackedScene>("res://ball.tscn");
+
+		BallBehavior extraBall = ballInstance.Instantiate<BallBehavior>();
+
+		GetTree().CurrentScene.AddChild(extraBall);
+
+		_ballContainer.Add(extraBall);
+		ballCount = _ballContainer.Count + 1;
+
+		extraBall.StartBall();
+	}
+
+	public void ClearBalls()
+	{
+		foreach(BallBehavior ball in _ballContainer)
+		{
+			if(IsInstanceValid(ball))
+			{
+				ball.QueueFree();
+			}
+		}
+
+		_ballContainer.Clear();
+		ballCount = 1;
+	}
+
+
 
 
 	

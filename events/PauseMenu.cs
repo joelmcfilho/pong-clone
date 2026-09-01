@@ -58,6 +58,7 @@ public partial class PauseMenu : Control
 			_paused = false;
 			GetTree().Paused = false;
 			_gm.ClearSurvival();
+			_gm.ClearBalls();
 			GetTree().ChangeSceneToFile("res://MainMenu.tscn");
 		
 		

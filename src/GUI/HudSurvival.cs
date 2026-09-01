@@ -92,11 +92,17 @@ public partial class HudSurvival : Control
 		_timeCounter.Text = $"{time.ToString("F1")} sec";
 	}
 
+	public void UpdateSurvivalBallCounter(int ballcount)
+	{
+		_ballCounter.Text = $"{ballcount}";
+	}
+
 	public void RestartPressed()
 	{
 		double time = 0.0f;
 		_timeCounter.Text = $"{time.ToString("F1")} sec";
 		_gm.KillTimeCount();
+		_gm.ClearBalls();
 
 		//ZERAR CONTADOR DE BOLA AQUI
 		//ELIMINAR TODAS AS INSTÂNCIAS DE BOLA E DEIXAR SÓ UMA
@@ -123,6 +129,7 @@ public partial class HudSurvival : Control
 		_endGameButtonBox.Visible = false;
 
 		_gm.KillTimeCount();
+		_gm.ClearBalls();
 		_gm.ClearSurvival();
 		_gameMode = GameMode.None;
 		GetTree().Paused = false;

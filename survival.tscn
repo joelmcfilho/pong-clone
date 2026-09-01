@@ -200,4 +200,7 @@ script = ExtResource("10_ac4mc")
 
 [node name="PauseMenu" parent="." unique_id=766707054 instance=ExtResource("4_gn857")]
 
+[node name="Timer" type="Timer" parent="." unique_id=1336247284]
+wait_time = 5.0
+
 [connection signal="body_entered" from="GoalSurvival" to="GoalArea" method="SurvivalGoalBodyEntered"]
