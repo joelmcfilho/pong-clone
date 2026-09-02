@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using Godot;
 
 public partial class Paddle : CharacterBody2D
@@ -7,6 +8,8 @@ public partial class Paddle : CharacterBody2D
 
     public AnimatedSprite2D _sprite;
 
+    public bool isHitting = false;
+
     public override void _Ready()
     {
 
@@ -15,13 +18,15 @@ public partial class Paddle : CharacterBody2D
 
     }
 
-    public void AnimationControl(float direction)
+    public async Task AnimationControl(float direction)
     {
         if(_sprite == null)
         {
             GD.PrintErr($"ERRO: _sprite is NULL on Node {Name}");
             return;
         }
+        if(isHitting == true) return;
+
 
         if(direction < 0)
         {
@@ -38,6 +43,19 @@ public partial class Paddle : CharacterBody2D
             if (_sprite.Animation != "idle")
                 _sprite.Play("idle");
         }
+    }
+
+    public void PlayHitAnimation()
+    {
+        if (_sprite == null)
+            return;
+
+        isHitting = true;
+        GD.Print("HIT DEBUG");
+        _sprite.Play("hit");
+        ToSignal(GetTree().CreateTimer(1),SceneTreeTimer.SignalName.Timeout);
+        isHitting = false;
+        
     }
 
     public void ResetPaddle(Vector2 initialPosition)

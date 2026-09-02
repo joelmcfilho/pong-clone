@@ -14,6 +14,8 @@ public partial class BallBehavior : CharacterBody2D
 	{
 		_sprite = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
 
+		Paddle _paddle = new Paddle();
+
 		_spawnPosition = GlobalPosition;
 	}
 
@@ -47,6 +49,7 @@ public partial class BallBehavior : CharacterBody2D
 		{
 			if(collision.GetCollider() is Paddle paddle)
 			{
+				paddle.PlayHitAnimation();
 				float offset = (GlobalPosition.Y - paddle.Position.Y)/50f;
 
 				_direction = new Vector2(-_direction.X,offset);
