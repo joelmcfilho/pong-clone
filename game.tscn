@@ -15,6 +15,10 @@
 atlas = ExtResource("3_hve3p")
 region = Rect2(364, 145, 28, 36)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_boyg6"]
+atlas = ExtResource("3_hve3p")
+region = Rect2(340, 186, 22, 42)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_mfdv2"]
 atlas = ExtResource("3_hve3p")
 region = Rect2(338, 152, 26, 30)
@@ -36,10 +40,13 @@ animations = [{
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_hve3p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_boyg6")
 }],
-"loop": true,
+"loop": false,
 "name": &"hit",
-"speed": 5.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -116,10 +123,13 @@ animations = [{
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_hve3p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_boyg6")
 }],
-"loop": true,
+"loop": false,
 "name": &"hit",
-"speed": 5.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -190,7 +200,8 @@ position = Vector2(50.286613, 266.63693)
 scale = Vector2(3.77266, 6.5392776)
 sprite_frames = SubResource("SpriteFrames_iotsf")
 animation = &"hit"
-frame_progress = 0.45242953
+frame = 1
+frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerBar" unique_id=770517811]
 position = Vector2(51.560497, 264.08914)

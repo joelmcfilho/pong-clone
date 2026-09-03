@@ -15,6 +15,10 @@
 atlas = ExtResource("6_cdm3r")
 region = Rect2(364, 145, 28, 36)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_boyg6"]
+atlas = ExtResource("6_cdm3r")
+region = Rect2(340, 186, 22, 42)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_mfdv2"]
 atlas = ExtResource("6_cdm3r")
 region = Rect2(338, 152, 26, 30)
@@ -36,10 +40,13 @@ animations = [{
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_hve3p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_boyg6")
 }],
-"loop": true,
+"loop": false,
 "name": &"hit",
-"speed": 5.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,

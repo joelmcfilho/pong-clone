@@ -16,6 +16,10 @@ public partial class Paddle : CharacterBody2D
 
         _sprite = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
 
+        _sprite.Play("idle");
+
+        _sprite.AnimationFinished += OnAnimationFinished;
+
     }
 
     public async Task AnimationControl(float direction)
@@ -51,12 +55,19 @@ public partial class Paddle : CharacterBody2D
             return;
 
         isHitting = true;
-        GD.Print("HIT DEBUG");
         _sprite.Play("hit");
-        ToSignal(GetTree().CreateTimer(1),SceneTreeTimer.SignalName.Timeout);
-        isHitting = false;
         
     }
+
+    private void OnAnimationFinished()
+{
+    if (_sprite.Animation == "hit")
+    {
+  
+        isHitting = false;
+        _sprite.Play("idle");
+    }
+}
 
     public void ResetPaddle(Vector2 initialPosition)
     {
