@@ -1,20 +1,16 @@
 [gd_scene format=3 uid="uid://bvl22coi32tdr"]
 
 [ext_resource type="Script" uid="uid://bqvnfxasfs0q0" path="res://src/GUI/MainMenu.cs" id="1_h7a2f"]
-[ext_resource type="PackedScene" uid="uid://cvt0nocxf1roy" path="res://game.tscn" id="1_i26rj"]
 [ext_resource type="Texture2D" uid="uid://drgvrnu1i4vg4" path="res://assets/25681123-tenis-jogador-minimalista-atleta-acionado-dentro-tenis-jogos-vetor.jpg" id="2_qoqlk"]
 [ext_resource type="FontFile" uid="uid://m2w2b5l8qtb5" path="res://assets/super_jello/Super Jello.ttf" id="3_qoqlk"]
 [ext_resource type="Texture2D" uid="uid://ckkqspn7sncs5" path="res://assets/oathbreaker_studios_logo_redim.png" id="5_iwfq2"]
 
 [node name="MainMenu" type="Control" unique_id=700214640]
 layout_mode = 3
-anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -265.0
-offset_top = -281.0
-offset_right = -265.0
-offset_bottom = -281.0
+offset_left = -2.0
+offset_right = -2.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_h7a2f")
@@ -26,18 +22,18 @@ layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 1.054
-offset_left = -202.0
-offset_top = -401.0
-offset_right = -176.0
-offset_bottom = -59.992004
+offset_left = -39.0
+offset_top = -274.0
+offset_right = 310.0
+offset_bottom = 309.008
 texture = ExtResource("2_qoqlk")
 
 [node name="Title" type="Label" parent="." unique_id=1423763614]
 layout_mode = 0
-offset_left = -53.0
-offset_top = -147.0
-offset_right = 687.0
-offset_bottom = -75.0
+offset_left = 56.0
+offset_top = 47.0
+offset_right = 796.0
+offset_bottom = 119.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 25
@@ -52,10 +48,10 @@ layout_mode = 1
 anchors_preset = -1
 anchor_right = 0.58100003
 anchor_bottom = 0.328
-offset_left = 554.0
-offset_top = 47.0
-offset_right = 257.688
-offset_bottom = 252.456
+offset_left = 752.0
+offset_top = 247.0
+offset_right = 455.688
+offset_bottom = 452.456
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MainMenu" unique_id=1763692839]
 layout_mode = 2
@@ -87,22 +83,19 @@ theme_override_fonts/font = ExtResource("3_qoqlk")
 theme_override_font_sizes/font_size = 55
 text = "Quit"
 
-[node name="Game" parent="." unique_id=509795348 instance=ExtResource("1_i26rj")]
-visible = false
-position = Vector2(-89, -102)
-
 [node name="StudioLogo" type="Sprite2D" parent="." unique_id=714957614]
 texture_filter = 1
-position = Vector2(-123, 349.99997)
+position = Vector2(98, 569)
 scale = Vector2(1.164428, 1.2165564)
 texture = ExtResource("5_iwfq2")
 
 [node name="ClassicMenuText" type="Label" parent="." unique_id=883556456]
+visible = false
 layout_mode = 0
-offset_left = 354.0
-offset_top = 70.0
-offset_right = 922.0
-offset_bottom = 158.0
+offset_left = 559.0
+offset_top = 272.0
+offset_right = 1127.0
+offset_bottom = 360.0
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 5
 theme_override_fonts/font = ExtResource("3_qoqlk")
@@ -110,11 +103,12 @@ theme_override_font_sizes/font_size = 51
 text = "Choose your Game Mode!"
 
 [node name="ClassicModeMenu" type="CenterContainer" parent="." unique_id=159853461]
+visible = false
 layout_mode = 0
-offset_left = 539.0
-offset_top = 61.0
-offset_right = 939.0
-offset_bottom = 476.0
+offset_left = 735.0
+offset_top = 272.0
+offset_right = 1135.0
+offset_bottom = 687.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="ClassicModeMenu" unique_id=70434052]
 layout_mode = 2
@@ -143,10 +137,10 @@ text = "Return to Menu"
 [node name="SurvivalMenuText" type="Label" parent="." unique_id=692160795]
 visible = false
 layout_mode = 0
-offset_left = 268.0
-offset_top = 15.0
-offset_right = 929.0
-offset_bottom = 128.0
+offset_left = 473.0
+offset_top = 208.0
+offset_right = 1134.0
+offset_bottom = 321.0
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 5
 theme_override_fonts/font = ExtResource("3_qoqlk")
@@ -158,13 +152,18 @@ horizontal_alignment = 2
 [node name="SurvivalModeMenu" type="CenterContainer" parent="." unique_id=1926911736]
 visible = false
 layout_mode = 0
-offset_left = 558.0
-offset_top = 76.0
-offset_right = 928.0
-offset_bottom = 459.0
+offset_left = 760.0
+offset_top = 260.0
+offset_right = 1130.0
+offset_bottom = 643.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="SurvivalModeMenu" unique_id=985932563]
 layout_mode = 2
+
+[node name="Label" type="Label" parent="SurvivalModeMenu/VBoxContainer" unique_id=84061186]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_qoqlk")
+theme_override_font_sizes/font_size = 45
 
 [node name="Start" type="Button" parent="SurvivalModeMenu/VBoxContainer" unique_id=1822049262]
 custom_minimum_size = Vector2(370, 100)
@@ -172,13 +171,6 @@ layout_mode = 2
 theme_override_fonts/font = ExtResource("3_qoqlk")
 theme_override_font_sizes/font_size = 40
 text = "Start"
-
-[node name="Hi-Scores" type="Button" parent="SurvivalModeMenu/VBoxContainer" unique_id=512112514]
-custom_minimum_size = Vector2(370, 100)
-layout_mode = 2
-theme_override_fonts/font = ExtResource("3_qoqlk")
-theme_override_font_sizes/font_size = 39
-text = "Hi-Scores"
 
 [node name="Return" type="Button" parent="SurvivalModeMenu/VBoxContainer" unique_id=1426726613]
 custom_minimum_size = Vector2(0, 50)

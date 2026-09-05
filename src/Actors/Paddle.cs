@@ -10,11 +10,16 @@ public partial class Paddle : CharacterBody2D
 
     public bool isHitting = false;
 
+    private AudioStream _hitSound;
+    private AudioManager _audioManager;
+
     public override void _Ready()
     {
 
 
         _sprite = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
+        _audioManager = GetNode<AudioManager>("/root/AudioManager");
+        _hitSound = GD.Load<AudioStream>("res://assets/sounds/SFX/hit.wav");
 
         _sprite.Play("idle");
 
@@ -56,7 +61,7 @@ public partial class Paddle : CharacterBody2D
 
         isHitting = true;
         _sprite.Play("hit");
-        
+        _audioManager.PlaySFX(_hitSound);
     }
 
     private void OnAnimationFinished()

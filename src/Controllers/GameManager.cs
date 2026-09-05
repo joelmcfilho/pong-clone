@@ -24,6 +24,8 @@ public partial class GameManager : Node
 	private List<BallBehavior> _ballContainer = new List<BallBehavior>();
 	public bool isCountdownActive {get;set;}
 
+	private AudioManager _am;
+
 	public GameMode gameModeSelect;
 
     public override void _Ready()
@@ -226,6 +228,7 @@ public partial class GameManager : Node
 		BallBehavior extraBall = ballInstance.Instantiate<BallBehavior>();
 
 		GetTree().CurrentScene.AddChild(extraBall);
+		_am.PlaySFX(GD.Load<AudioStream>("res://assets/sounds/SFX/newball.wav"));
 
 		_ballContainer.Add(extraBall);
 		ballCount = _ballContainer.Count + 1;

@@ -9,6 +9,7 @@ public partial class InitGame : Node2D
 	private AIBehavior _player2Paddle;
 
 	private GameManager _gm;
+	private AudioManager _am;
 
 	public async override void _Ready()
 	{
@@ -18,6 +19,7 @@ public partial class InitGame : Node2D
 		_player2Paddle = GetNode<AIBehavior>("AIBar");
 
 		_gm = GetNode<GameManager>("/root/GameManager");
+		_am = GetNode<AudioManager>("/root/AudioManager");
 
 		_gm.InitializeGame(_ball,_playerPaddle,_hud,_player2Paddle);
 		
@@ -25,6 +27,8 @@ public partial class InitGame : Node2D
 		_hud.UpdateScoreHUD(0,0);
 
 		await _hud.Countdown();
+
+		_am.PlayMusic(GD.Load<AudioStream>("res://assets/sounds/Music/classicmode.mp3"));
 
 		_ball.StartBall();
 		_ball.BallAnimationControl();

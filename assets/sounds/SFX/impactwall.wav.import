@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://b3f85grel2867"
-path="res://.godot/imported/impactwall.wav-7ba229015c7fadb94725b35a654720c6.sample"
+path="res://.godot/imported/impactwall.wav-a450db504458e88baa80a8919c5ebb98.sample"
 
 [deps]
 
-source_file="res://assets/sounds/impactwall.wav"
-dest_files=["res://.godot/imported/impactwall.wav-7ba229015c7fadb94725b35a654720c6.sample"]
+source_file="res://assets/sounds/SFX/impactwall.wav"
+dest_files=["res://.godot/imported/impactwall.wav-a450db504458e88baa80a8919c5ebb98.sample"]
 
 [params]
 

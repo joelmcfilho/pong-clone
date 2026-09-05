@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://c2sit4vyctvdg" path="res://hud_survival.tscn" id="3_b1jyj"]
 [ext_resource type="PackedScene" uid="uid://f45ifuns2lma" path="res://pause_menu.tscn" id="4_gn857"]
 [ext_resource type="Script" uid="uid://dsllkcspc84di" path="res://src/Actions/PlayerMovement.cs" id="5_gjf0t"]
+[ext_resource type="Script" uid="uid://cb07jecguuws7" path="res://src/Actors/SquashWall.cs" id="5_xbx4m"]
 [ext_resource type="Texture2D" uid="uid://brjhi087vldkm" path="res://assets/NES - Tennis - Miscellaneous - General Sprites.png" id="6_cdm3r"]
 [ext_resource type="Script" uid="uid://gxy3wdojy0pe" path="res://src/AI/BallBehavior.cs" id="7_rwvoj"]
 [ext_resource type="Texture2D" uid="uid://cmtv0htwd52jd" path="res://assets/ball_sprite.png" id="8_qbdmv"]
@@ -161,6 +162,7 @@ shape = SubResource("RectangleShape2D_e2o6t")
 [node name="RightWall" type="StaticBody2D" parent="." unique_id=1288570577]
 position = Vector2(1354.14, 268.7898)
 scale = Vector2(0.99999994, 0.99999994)
+script = ExtResource("5_xbx4m")
 
 [node name="Sprite2D" type="Sprite2D" parent="RightWall" unique_id=385192907]
 position = Vector2(-36.942673, 76.43312)
@@ -222,4 +224,5 @@ script = ExtResource("10_ac4mc")
 [node name="Timer" type="Timer" parent="." unique_id=1336247284]
 wait_time = 5.0
 
+[connection signal="child_entered_tree" from="RightWall/CollisionShape2D" to="RightWall" method="BallsToTheWall"]
 [connection signal="body_entered" from="GoalSurvival" to="GoalArea" method="SurvivalGoalBodyEntered"]

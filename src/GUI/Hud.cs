@@ -10,6 +10,10 @@ public partial class Hud : Control
 	private Label _textLabel;
 	private Label _player2Label;
 	private GameManager _gm;
+	private AudioManager _am;
+
+	private AudioStream _countSFX = GD.Load<AudioStream>("res://assets/sounds/SFX/countdown.wav");
+	private AudioStream _goSFX = GD.Load<AudioStream>("res://assets/sounds/SFX/go.wav");
 
 	public override void _Ready()
 	{
@@ -18,7 +22,9 @@ public partial class Hud : Control
 		_countdownLabel = GetNode<Label>("MarginContainer2/CountdownLabel");
 		_textLabel = GetNode<Label>("MarginContainer3/TextLabel");
 		_player2Label = GetNode<Label>("MarginContainer/Tophud/Player2");
+
 		_gm = GetNode<GameManager>("/root/GameManager");
+		_am = GetNode<AudioManager>("/root/AudioManager");
 
 		_countdownLabel.Visible = false;
 		_textLabel.Visible = false;
@@ -48,16 +54,19 @@ public partial class Hud : Control
 	public async Task Countdown()
 	{
 		_gm.isCountdownActive = true;
+		_am.PlaySFX(_countSFX);
 		ShowCountdownLabel("3");
 
 		await ToSignal(GetTree().CreateTimer(1), 
 		SceneTreeTimer.SignalName.Timeout);
 
+		_am.PlaySFX(_countSFX);
 		ShowCountdownLabel("2");
 
 		await ToSignal(GetTree().CreateTimer(1), 
 		SceneTreeTimer.SignalName.Timeout);
 
+		_am.PlaySFX(_countSFX);
 		ShowCountdownLabel("1");
 
 		await ToSignal(GetTree().CreateTimer(1), 
@@ -65,6 +74,7 @@ public partial class Hud : Control
 
 		_gm.isCountdownActive = false;
 
+		_am.PlaySFX(_goSFX);
 		ShowCountdownLabel("GO!");
 
 		await ToSignal(GetTree().CreateTimer(0.6), 
@@ -88,6 +98,7 @@ public partial class Hud : Control
 	public async Task ShowPointSign()
 	{
 		_textLabel.AddThemeFontSizeOverride("font_size",128);
+		_am.PlaySFX(GD.Load<AudioStream>("res://assets/sounds/SFX/point.wav"));
 		_textLabel.Text = "POINT!";
 		_textLabel.Visible = true;
 
@@ -99,6 +110,7 @@ public partial class Hud : Control
 
 	public async Task ShowWinner(Side side)
 	{
+		_am.PlaySFX(GD.Load<AudioStream>("res://assets/sounds/SFX/victory.wav"));
 		_textLabel.AddThemeFontSizeOverride("font_size",96);
 		if(side == Side.Player)
 		{
