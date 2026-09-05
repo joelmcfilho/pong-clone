@@ -15,7 +15,11 @@ public partial class HudSurvival : Control
 
 
 	private GameManager _gm;
+	private AudioManager _am;
 	private GameMode _gameMode;
+
+	private AudioStream _countSFX = GD.Load<AudioStream>("res://assets/sounds/SFX/countdown.wav");
+	private AudioStream _goSFX = GD.Load<AudioStream>("res://assets/sounds/SFX/go.wav");
 	public override void _Ready()
 	{
 		_timeCounter = GetNode<Label>("MarginContainerTimer/Tophud/TimeCounter");
@@ -28,6 +32,7 @@ public partial class HudSurvival : Control
 		_headsupCountdown = GetNode<Label>("MarginContainerBallHeadsup/VBoxContainer/HeadsupCount");
 
 		_gm = GetNode<GameManager>("/root/GameManager");
+		_am = GetNode<AudioManager>("/root/AudioManager");
 		_gameMode = new GameMode();
 
 		_countdownLabel.Visible = false;
@@ -43,16 +48,19 @@ public partial class HudSurvival : Control
 	public async Task Countdown()
 	{
 		_gm.isCountdownActive = true;
+		_am.PlaySFX(_countSFX);
 		ShowCountdownLabel("3");
 
 		await ToSignal(GetTree().CreateTimer(1), 
 		SceneTreeTimer.SignalName.Timeout);
 
+		_am.PlaySFX(_countSFX);
 		ShowCountdownLabel("2");
 
 		await ToSignal(GetTree().CreateTimer(1), 
 		SceneTreeTimer.SignalName.Timeout);
 
+		_am.PlaySFX(_countSFX);
 		ShowCountdownLabel("1");
 
 		await ToSignal(GetTree().CreateTimer(1), 
@@ -60,6 +68,7 @@ public partial class HudSurvival : Control
 
 		_gm.isCountdownActive = false;
 
+		_am.PlaySFX(_goSFX);
 		ShowCountdownLabel("GO!");
 
 		await ToSignal(GetTree().CreateTimer(0.6), 
@@ -133,9 +142,6 @@ public partial class HudSurvival : Control
 		_timeCounter.Text = $"{time.ToString("F1")} sec";
 		_gm.KillTimeCount();
 		_gm.ClearBalls();
-
-		//ZERAR CONTADOR DE BOLA AQUI
-		//ELIMINAR TODAS AS INSTÂNCIAS DE BOLA E DEIXAR SÓ UMA
 
 		_textLabel.Visible = false;
 		_marker.Visible = false;

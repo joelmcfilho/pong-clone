@@ -81,7 +81,7 @@ animations = [{
 size = Vector2(124.10347, 518.3145)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6d2l4"]
-size = Vector2(115.923645, 636.25806)
+size = Vector2(117.77908, 555.07684)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7sc4i"]
 atlas = ExtResource("8_qbdmv")
@@ -159,10 +159,18 @@ position = Vector2(51.560497, 264.08914)
 scale = Vector2(0.34899998, 0.34899998)
 shape = SubResource("RectangleShape2D_e2o6t")
 
-[node name="RightWall" type="StaticBody2D" parent="." unique_id=1288570577]
+[node name="RightWall" type="StaticBody2D" parent="." unique_id=2043280611]
 position = Vector2(1354.14, 268.7898)
 scale = Vector2(0.99999994, 0.99999994)
+disable_mode = 1
+
+[node name="Area2D" type="Area2D" parent="RightWall" unique_id=1864948608]
 script = ExtResource("5_xbx4m")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RightWall/Area2D" unique_id=1948428355]
+position = Vector2(5.30249, 52.927002)
+scale = Vector2(1.1499995, 1.1499995)
+shape = SubResource("RectangleShape2D_6d2l4")
 
 [node name="Sprite2D" type="Sprite2D" parent="RightWall" unique_id=385192907]
 position = Vector2(-36.942673, 76.43312)
@@ -170,8 +178,8 @@ scale = Vector2(1, 0.5645628)
 texture = ExtResource("10_6d2l4")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RightWall" unique_id=1603512399]
-position = Vector2(2.5477753, 50.955414)
-scale = Vector2(0.9999998, 0.9999998)
+position = Vector2(6.369385, 52.927002)
+scale = Vector2(1.1499995, 1.1499995)
 shape = SubResource("RectangleShape2D_6d2l4")
 
 [node name="Ball" type="CharacterBody2D" parent="." unique_id=805588895]
@@ -224,5 +232,5 @@ script = ExtResource("10_ac4mc")
 [node name="Timer" type="Timer" parent="." unique_id=1336247284]
 wait_time = 5.0
 
-[connection signal="child_entered_tree" from="RightWall/CollisionShape2D" to="RightWall" method="BallsToTheWall"]
+[connection signal="area_entered" from="RightWall/Area2D" to="RightWall/Area2D" method="BallsToTheWall"]
 [connection signal="body_entered" from="GoalSurvival" to="GoalArea" method="SurvivalGoalBodyEntered"]

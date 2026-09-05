@@ -30,6 +30,8 @@ public partial class GameManager : Node
 
     public override void _Ready()
     {
+		_am = GetNode<AudioManager>("/root/AudioManager");
+		
 		_save = new Save();
 
 		saveTime = _save.LoadTimeRecord();

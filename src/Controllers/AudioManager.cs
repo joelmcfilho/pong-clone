@@ -13,7 +13,11 @@ public partial class AudioManager : Node
 
     public void PlayMusic(AudioStream music)
     {
-        if(_musicPlayer.Stream == music) return;
+        if(music == null) return;
+        
+        if(_musicPlayer.Stream == music && _musicPlayer.Playing) return;
+
+        _musicPlayer.Stop();
 
         _musicPlayer.Stream = music;
         _musicPlayer.Play();
