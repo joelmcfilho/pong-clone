@@ -184,6 +184,7 @@ shape = SubResource("RectangleShape2D_6d2l4")
 
 [node name="Ball" type="CharacterBody2D" parent="." unique_id=805588895]
 position = Vector2(-1, -1)
+collision_layer = 2
 script = ExtResource("7_rwvoj")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Ball" unique_id=1630860382]
@@ -216,6 +217,7 @@ shape = SubResource("RectangleShape2D_fc0e3")
 [node name="GoalSurvival" type="Area2D" parent="." unique_id=1641965965]
 position = Vector2(16, -0.9999995)
 scale = Vector2(5.365, 5.365)
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GoalSurvival" unique_id=849640531]
 position = Vector2(-33.612537, 59.832695)
@@ -223,6 +225,7 @@ shape = SubResource("RectangleShape2D_7jktm")
 
 [node name="GoalArea" type="Area2D" parent="." unique_id=1170019583]
 position = Vector2(-185, 168)
+collision_mask = 2
 script = ExtResource("10_ac4mc")
 
 [node name="Hud_Survival" parent="." unique_id=750265900 instance=ExtResource("3_b1jyj")]

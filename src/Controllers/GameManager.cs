@@ -144,7 +144,7 @@ public partial class GameManager : Node
 
 	public void SurvivalEndGame()
 	{
-		_initSurvival.survivalStart = false;
+		_initSurvival.survivalStart = false;		
 		_hudSurvival.ShowSurvivalEndGameText(_time);
 		_save.CheckRecord(_time,saveTime);
 	}

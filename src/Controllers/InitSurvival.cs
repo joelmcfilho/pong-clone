@@ -8,6 +8,8 @@ public partial class InitSurvival : Node2D
 	private Timer _ballTimer;
 
 	private GameManager _gm;
+	private AudioManager _am;
+
 	public bool survivalStart = false;
 
 	public override async void _Ready()
@@ -19,17 +21,16 @@ public partial class InitSurvival : Node2D
 
 
 		_gm = GetNode<GameManager>("/root/GameManager");
+		_am = GetNode<AudioManager>("/root/AudioManager");
 
 		_gm.InitializeSurvival(this,
 								_ball,
 								_paddle,
 								_hudSurvival
-								// _ballTimer,
-								// _ballInstance,
-								// _containerBall
 								);
 
 		await _hudSurvival.Countdown();
+		_am.PlayMusic(GD.Load<AudioStream>("res://assets/sounds/Music/survivalmode.mp3"));
 
 		_ball.StartBall();
 		_ball.BallAnimationControl();

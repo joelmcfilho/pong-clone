@@ -122,6 +122,7 @@ public partial class HudSurvival : Control
 		_endGameButtonBox.Visible = true;
 
 		GetTree().Paused = true;
+		_am.PlaySFX(GD.Load<AudioStream>("res://assets/sounds/SFX/defeat_survival.wav"));
 		_textLabel.Text = "Game Over!";
 		_marker.Text = $"Your time is {_gm.RegisterTime(time)} seconds!";
 	}

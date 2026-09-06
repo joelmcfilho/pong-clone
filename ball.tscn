@@ -43,6 +43,7 @@ animations = [{
 radius = 26.504717
 
 [node name="Ball" type="CharacterBody2D" unique_id=915390836]
+collision_layer = 2
 script = ExtResource("1_41u45")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1274711115]
