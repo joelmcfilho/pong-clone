@@ -1,3 +1,4 @@
+using System;
 using Godot;
 
 
@@ -8,6 +9,8 @@ public partial class MainMenu : Control
     private CenterContainer _survivalMenu;
     private Label _classicMenuText;
     private Label _survivalMenuText;
+    private Label _timeRecordLabel;
+    private Save _save;
 
 
     private GameManager _gm;
@@ -22,11 +25,15 @@ public partial class MainMenu : Control
         _am = GetNode<AudioManager>("/root/AudioManager");
         _classicMenuText = GetNode<Label>("ClassicMenuText");
         _survivalMenuText = GetNode<Label>("SurvivalMenuText");
+        _timeRecordLabel = GetNode<Label>("TimeRecordLabel");
+        _save = new Save();
 
         _mainMenu.Visible = true;
         _classicMenu.Visible = false;
         _survivalMenu.Visible = false;
         _classicMenuText.Visible = false;
+        _survivalMenuText.Visible = false;
+        _timeRecordLabel.Visible = false;
 
         _gm.gameModeSelect = GameMode.None;
         _am.PlayMusic(GD.Load<AudioStream>("res://assets/sounds/Music/mainmenu.mp3"));
@@ -43,9 +50,22 @@ public partial class MainMenu : Control
     }
 
     public void SurvivalButtonPressed()
-    {
+    {   
+        String timeText;
+
+        if(_save.LoadTimeRecord == null)
+        {
+            timeText = "0.0";
+        }
+        else
+        {
+            timeText = _save.LoadTimeRecord().ToString("F1");
+        }
+
+        _timeRecordLabel.Text = $"Time Record: {timeText} sec";
         _am.PlaySFX(GD.Load<AudioStream>("res://assets/sounds/SFX/menuselect.wav"));
         _mainMenu.Visible = false;
+        _timeRecordLabel.Visible = true;
         _survivalMenuText.Visible = true;
         _survivalMenu.Visible = true;
     }
@@ -97,16 +117,13 @@ public partial class MainMenu : Control
         GetTree().ChangeSceneToFile("res://survival.tscn");
     }
 
-    public void HiScoreSurvivalButtonPressed()
-    {
-        
-    }
     
     public void ReturnSurvivalToMain()
     {
         _am.PlaySFX(GD.Load<AudioStream>("res://assets/sounds/SFX/menuselect.wav"));
         _survivalMenuText.Visible = false;
         _survivalMenu.Visible = false;
+        _timeRecordLabel.Visible = false;
         _mainMenu.Visible = true;
     }
 

@@ -7,6 +7,7 @@
 
 [node name="MainMenu" type="Control" unique_id=700214640]
 layout_mode = 3
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = -2.0
@@ -149,21 +150,30 @@ text = "Every 5 seconds, another ball
 enters the Court!"
 horizontal_alignment = 2
 
+[node name="TimeRecordLabel" type="Label" parent="." unique_id=84061186]
+visible = false
+layout_mode = 0
+offset_left = 606.0
+offset_top = 359.0
+offset_right = 1128.0
+offset_bottom = 441.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("3_qoqlk")
+theme_override_font_sizes/font_size = 52
+horizontal_alignment = 2
+
 [node name="SurvivalModeMenu" type="CenterContainer" parent="." unique_id=1926911736]
 visible = false
 layout_mode = 0
-offset_left = 760.0
-offset_top = 260.0
-offset_right = 1130.0
-offset_bottom = 643.0
+offset_left = 763.0
+offset_top = 336.0
+offset_right = 1133.0
+offset_bottom = 719.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="SurvivalModeMenu" unique_id=985932563]
 layout_mode = 2
-
-[node name="Label" type="Label" parent="SurvivalModeMenu/VBoxContainer" unique_id=84061186]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("3_qoqlk")
-theme_override_font_sizes/font_size = 45
 
 [node name="Start" type="Button" parent="SurvivalModeMenu/VBoxContainer" unique_id=1822049262]
 custom_minimum_size = Vector2(370, 100)

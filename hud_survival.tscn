@@ -149,6 +149,7 @@ theme_override_font_sizes/font_size = 25
 text = "Quit to Menu"
 
 [node name="MarginContainerBallHeadsup" type="MarginContainer" parent="." unique_id=523669595]
+process_mode = 1
 layout_mode = 0
 offset_left = 976.4182
 offset_top = 528.3186

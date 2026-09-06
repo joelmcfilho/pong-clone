@@ -31,6 +31,7 @@ public partial class HudSurvival : Control
 		_ballHeadsup = GetNode<MarginContainer>("MarginContainerBallHeadsup");
 		_headsupCountdown = GetNode<Label>("MarginContainerBallHeadsup/VBoxContainer/HeadsupCount");
 
+
 		_gm = GetNode<GameManager>("/root/GameManager");
 		_am = GetNode<AudioManager>("/root/AudioManager");
 		_gameMode = new GameMode();
@@ -85,17 +86,17 @@ public partial class HudSurvival : Control
 		_headsupCountdown.Text = "3";
 
 		await ToSignal(GetTree().CreateTimer(1), 
-		SceneTreeTimer.SignalName.Timeout);
+		SceneTreeTimer.SignalName.Timeout);	
 
 		_headsupCountdown.Text = "2";
 
 		await ToSignal(GetTree().CreateTimer(1), 
-		SceneTreeTimer.SignalName.Timeout);
+		SceneTreeTimer.SignalName.Timeout);	
 
 		_headsupCountdown.Text = "1";
 
 		await ToSignal(GetTree().CreateTimer(1), 
-		SceneTreeTimer.SignalName.Timeout);
+		SceneTreeTimer.SignalName.Timeout);	
 
 		_ballHeadsup.Visible = false;
 
@@ -116,6 +117,7 @@ public partial class HudSurvival : Control
 	public void ShowSurvivalEndGameText(double time)
 	{
 		ToSignal(GetTree().CreateTimer(1.5),SceneTreeTimer.SignalName.Timeout);
+		_ballHeadsup.QueueFree();
 
 		_textLabel.Visible = true;
 		_marker.Visible = true;
